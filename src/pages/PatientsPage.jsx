@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-const PatientsPage = ({dataList}) => {
+const PatientsPage = ({patientList}) => {
 
   const tableStyles = {
     tableContainer: 'border border-slate-200 rounded-md',
@@ -10,7 +10,7 @@ const PatientsPage = ({dataList}) => {
     cell: 'border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400 text-xs'
   }
 
-  console.log('dataList', dataList)
+  console.log('dataList', patientList)
 
   return ( 
   <div className={tableStyles.tableContainer}>
@@ -26,14 +26,14 @@ const PatientsPage = ({dataList}) => {
         </tr>
       </thead>
       <tbody className={tableStyles.tbody}>
-        {dataList.map( patient => (
+        {patientList.map( patient => (
           <tr key={patient.numeroPaciente}>
             <td className={tableStyles.cell}>{patient.numeroPaciente}</td>
             <td className={tableStyles.cell}>{patient.nombrePaciente}</td>
             <td className={tableStyles.cell}>{patient.edad}</td>
             <td className={tableStyles.cell}>{patient.atenciones[0].fecha}</td>
             <td className={tableStyles.cell}>{patient.atenciones[0].nombreMedico}</td>
-            <td className={tableStyles.cell}><Link to="" className="text-xs underline">Ver Paciente</Link></td>
+            <td className={tableStyles.cell}><Link to={`/patients/${patient.numeroPaciente.toLowerCase()}`} className="text-xs underline">Ver Paciente</Link></td>
           </tr>
         ))}
         

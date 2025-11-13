@@ -6,7 +6,6 @@ const App = () => {
 
   const [data, setData] = useState([])
   
-
   useEffect(() => {
     fetch('/api/patients')
     .then( response => {
@@ -23,12 +22,11 @@ const App = () => {
       console.error(error.message)
     })
 
-
   }, [])
 
 
   return (
-    <AppRoutes dataList={data} />
+    <AppRoutes patientList={data} />
   )
 }
 
