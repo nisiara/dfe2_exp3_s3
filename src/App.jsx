@@ -7,38 +7,41 @@ import { gql } from '@apollo/client'
 import { useQuery } from '@apollo/client/react'
 
 
-const GQL_OBTENER_PACIENTES = gql`
-  query ObtenerPacientes {
-    pacientes {
-      numeroPaciente
-      nombrePaciente
-      edad
+const GQL_OBTENER_EVENTOS = gql`
+  query ObtenerEventos {
+    eventos {
+      id
+      nombre_evento
+      tipo_evento
+      locacion
+      ciudad
+      fecha
+      
     }
   }
 `
 
 const App = () => {
 
-  const {loading, error, data} = useQuery(GQL_OBTENER_PACIENTES, {
+  const {loading, error, data} = useQuery(GQL_OBTENER_EVENTOS, {
     fetchPolicy: 'network-only'
   })
 
-  const [dataPacientes, setDataPacientes] = useState([])
+  const [dataEventos, setDataEventos] = useState([])
   // const [loading, setLoading] = useState(false)
   
   useEffect(() => {
     if(data){
-      setDataPacientes(data.pacientes)
+      setDataEventos(data.eventos)
     }
     
-
   }, [error, data])
 
 
   return (
     <>
       <Header/>
-      <AppRoutes patientList={dataPacientes} loading={loading} error={error} />
+      <AppRoutes listaEventos={dataEventos} loading={loading} error={error} />
       <Footer/>
     </>
   )
