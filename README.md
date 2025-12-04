@@ -1,8 +1,9 @@
-# Desarrollo Frontend II - Experiencia 2 Semana 6
+# Desarrollo Frontend II - Experiencia 3 Semana 7
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-7.2.4-646CFF?logo=vite&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss)
 ![GraphQL](https://img.shields.io/badge/GraphQL-3.4-E10098?logo=graphql)
+![APIRest](https://img.shields.io/badge/APIRest-E10098?logo=apirest)
 ![Apollo Client](https://img.shields.io/badge/Apollo-3.4-311C87?logo=apollographql)
 ![MSW](https://img.shields.io/badge/MSW-2.0.0-FF6A33?logo=mockserviceworker&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Vitest-4.0.14-6E9F18?logo=vitest)
@@ -18,7 +19,8 @@ Aplicación web en React para listar y consultar el detalle de un catálogo de e
 
 - **Lista de Eventos**: Renderiza catálogo con nombre, tipo, locación y acceso al detalle.
 - **Detalle de Evento**: Vista individual completa con información extendida y precios.
-- **GraphQL Mock**: Consultas `ObtenerEventos` y `ObtenerEventoPorID` servidas por MSW.
+- **API Rest Mock**: Consultas `ObtenerEventos` servidas por MSW.
+- **GraphQL Mock**: Consultas `ObtenerEventoPorID` servidas por MSW.
 - **Estados de Carga**: Mensajes diferenciados con delays simulados.
 - **Manejo de Errores**: Respuestas GraphQL con estructura `errors` para IDs inexistentes.
 - **Routing SPA**: Navegación completa con React Router entre páginas.

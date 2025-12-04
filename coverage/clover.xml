@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1764383435289" clover="3.2.0">
-  <project timestamp="1764383435289" name="All files">
-    <metrics statements="21" coveredstatements="21" conditionals="18" coveredconditionals="14" methods="9" coveredmethods="9" elements="48" coveredelements="44" complexity="0" loc="21" ncloc="21" packages="3" files="6" classes="6"/>
+<coverage generated="1764809813317" clover="3.2.0">
+  <project timestamp="1764809813317" name="All files">
+    <metrics statements="20" coveredstatements="20" conditionals="16" coveredconditionals="12" methods="9" coveredmethods="9" elements="45" coveredelements="41" complexity="0" loc="20" ncloc="20" packages="3" files="6" classes="6"/>
     <package name="components.common">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Common.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp2_s6/src/components/common/Common.jsx">
+      <file name="Common.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp3_s7/src/components/common/Common.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
       </file>
     </package>
     <package name="layout">
       <metrics statements="8" coveredstatements="8" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
-      <file name="Footer.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp2_s6/src/layout/Footer.jsx">
+      <file name="Footer.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp3_s7/src/layout/Footer.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
       </file>
-      <file name="Header.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp2_s6/src/layout/Header.jsx">
+      <file name="Header.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp3_s7/src/layout/Header.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
         <line num="3" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -27,8 +27,8 @@
       </file>
     </package>
     <package name="pages">
-      <metrics statements="12" coveredstatements="12" conditionals="12" coveredconditionals="8" methods="3" coveredmethods="3"/>
-      <file name="EventDetailPage.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp2_s6/src/pages/EventDetailPage.jsx">
+      <metrics statements="11" coveredstatements="11" conditionals="10" coveredconditionals="6" methods="3" coveredmethods="3"/>
+      <file name="EventDetailPage.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp3_s7/src/pages/EventDetailPage.jsx">
         <metrics statements="9" coveredstatements="9" conditionals="8" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
@@ -40,12 +40,11 @@
         <line num="54" count="1" type="stmt"/>
         <line num="56" count="2" type="cond" truecount="1" falsecount="1"/>
       </file>
-      <file name="EventsPage.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp2_s6/src/pages/EventsPage.jsx">
-        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+      <file name="EventsPage.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp3_s7/src/pages/EventsPage.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="5" count="10" type="cond" truecount="2" falsecount="0"/>
       </file>
-      <file name="HomePage.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp2_s6/src/pages/HomePage.jsx">
+      <file name="HomePage.jsx" path="/Users/nicolas/VsCode/dfe2/dfe2_exp3_s7/src/pages/HomePage.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
       </file>

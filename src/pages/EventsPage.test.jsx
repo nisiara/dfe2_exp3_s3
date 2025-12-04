@@ -76,18 +76,6 @@ describe('Conjunto de tests para el componente EventsPage', () => {
     expect(urls).toContain('/events/PT-010')
   })
 
-  it('Mostrar mensaje de error', () => {
-    const mockError = { message: 'Error de conexión con el servidor' }
-    
-    renderEventsPage({ 
-      loading: false, 
-      listaEventos: [], 
-      error: mockError 
-    })
-    expect(screen.getByText('Error al cargar la lista de eventos')).toBeInTheDocument()
-    expect(screen.getByText('Error de conexión con el servidor')).toBeInTheDocument()
-  })
-
   it('Mostrar la imagen de cada evento', () => {
     renderEventsPage({ 
       loading: false, 

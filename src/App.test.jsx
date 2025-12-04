@@ -77,10 +77,4 @@ describe('Conjunto de tests para el componente App', () => {
     expect(screen.getByText('Cargando lista de eventos')).toBeInTheDocument()
   })
 
-  it('Mostrar mensaje de error', () => {
-    const mockError = { message: 'Error de red' }
-    renderEventsPage({ listaEventos: [], error: mockError })
-    expect(screen.getByText('Error al cargar la lista de eventos')).toBeInTheDocument()
-    expect(screen.getByText('Error de red')).toBeInTheDocument()
-  })
 })
