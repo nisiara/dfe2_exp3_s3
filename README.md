@@ -3,17 +3,18 @@
 ![Vite](https://img.shields.io/badge/Vite-7.2.4-646CFF?logo=vite&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss)
 ![GraphQL](https://img.shields.io/badge/GraphQL-3.4-E10098?logo=graphql)
-![APIRest](https://img.shields.io/badge/APIRest-E10098?logo=apirest)
+![API Rest](https://img.shields.io/badge/API%20Rest-2.0-009688?logo=rest)
 ![Apollo Client](https://img.shields.io/badge/Apollo-3.4-311C87?logo=apollographql)
 ![MSW](https://img.shields.io/badge/MSW-2.0.0-FF6A33?logo=mockserviceworker&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Vitest-4.0.14-6E9F18?logo=vitest)
 ![Testing Library](https://img.shields.io/badge/Testing%20Library-16.3.0-E33332?logo=testinglibrary)
+![Cypress](https://img.shields.io/badge/Cypress-15.7.1-17202C?logo=cypress)
 
 
 
 ## 🎟️ Sistema de Eventos
 
-Aplicación web en React para listar y consultar el detalle de un catálogo de eventos culturales, deportivos y musicales usando GraphQL y Apollo Client, simulado con Mock Service Worker. Incluye test unitarios realizado con Vitest y RTL
+Aplicación web en React para listar y consultar el detalle de un catálogo de eventos culturales, deportivos y musicales usando GraphQL y Apollo Client, simulado con Mock Service Worker. Incluye tests unitarios con Vitest y RTL, y tests E2E con Cypress.
 
 ## 🚀 Características Principales
 
@@ -37,12 +38,19 @@ Aplicación web en React para listar y consultar el detalle de un catálogo de e
 - **Vite** 7.2.2 como dev server, bundler y runner de tests.
 - **Vitest** 4.0.14 como framework de testing rápido y moderno.
 - **Testing Library** 16.3.0 para tests centrados en comportamiento del usuario.
+- **Cypress** 15.7.1 para tests end-to-end y de integración completos.
 - **Happy DOM** como entorno DOM ligero para tests.
 - **ESLint / PostCSS** para calidad de código y procesado CSS.
 
 ## 📁 Estructura del Proyecto
 
 ```
+cypress/
+├── e2e/
+│   ├── listar-eventos.cy.js      # Tests E2E para listado de eventos
+│   └── event-detail.cy.js         # Tests E2E para detalle de evento
+├── fixtures/                      # Datos de prueba
+└── support/                       # Comandos y configuración personalizada
 src/
 ├── pages/
 │   ├── EventsPage.jsx            # Lista de eventos
@@ -75,23 +83,33 @@ src/
 - **100% cobertura** en statements, branches, functions y lines
 - **Tests unitarios** para todos los componentes individuales
 - **Tests de integración** para flujos completos de usuario
+- **Tests E2E** con Cypress para validar flujos de usuario completos
 - **Mocks de Apollo Client** para consultas GraphQL
 - **Testing de estados**: loading, error y success
 - **Testing de navegación** con MemoryRouter
+- **Interceptación de API calls** en tests E2E
 
 ### Comandos de Testing
 ```bash
-npm run test          # Ejecutar tests en modo watch
+npm run test          # Ejecutar tests unitarios en modo watch
 npm run coverage      # Generar reporte de cobertura
+npx cypress open      # Abrir Cypress Test Runner
+npx cypress run       # Ejecutar tests E2E en modo headless
 ```
 
 ### Archivos de Test
+
+#### Tests Unitarios
 - `HomePage.test.jsx` - Renderizado y elementos de la portada
 - `EventsPage.test.jsx` - Lista, imágenes, enlaces y estados
 - `EventDetailPage.test.jsx` - Detalle completo y manejo de errores
 - `Header.test.jsx` - Navegación activa y responsive (100% branches)
 - `Footer.test.jsx` - Enlaces y contenido del pie
 - `App.test.jsx` - Integración de componentes y props
+
+#### Tests E2E (Cypress)
+- `listar-eventos.cy.js` - Navegación y conteo de eventos en el listado
+- `event-detail.cy.js` - Flujo completo desde listado hasta detalle de evento
 
 ## 🔐 Consultas GraphQL
 
