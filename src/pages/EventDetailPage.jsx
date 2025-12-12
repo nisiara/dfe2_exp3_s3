@@ -89,7 +89,7 @@ const EventDetailPage = () => {
           <b className="text-2xl capitalize">{EVENTO.hora}</b>
         </div>
          <div className="py-4 col-span-12 md:col-span-6  text-gray-950 flex flex-col border b-color-gray-200">
-          <span className="uppercase text-xs mb-2">Precios</span>
+          <span className="uppercase text-xs mb-2">precios</span>
           <div className="flex w-full justify-center gap-6">
             {Object.entries(EVENTO.precios || {}).map(([zona, precio]) => (
               <div key={zona} className="flex flex-col text-sm justify-center items-center">

@@ -31,7 +31,7 @@ describe('Navega a la página Detalle de Evento', () => {
       .and('contain.text', 'hora');
 
     cy.get('aside')
-      .children('div').eq(3).children('span')
+      .children('div').eq(4).children('span')
       .should('be.visible')
       .and('contain.text', 'precios');
       
