@@ -1,448 +1,459 @@
 import { http, HttpResponse, delay, graphql} from "msw";
 
-const eventos = [
+const recetas = [
   {
-    id: "PT-001",
-    nombre_evento: "Soda Stereo - Ecos",
-    tipo_evento: "concierto",
-    fecha: "2026-03-26",
-    locacion: "Movistar Arena",
-    ciudad: "Santiago",
-    hora: "21:00",
-    descripcion: "Espectáculo audiovisual y musical en homenaje a la legendaria banda Soda Stereo.",
-    auspiciadores: ["Banco de Chile", "Movistar", "Cerveza Kross"],
-    precios: {
-      platea_alta: 40000,
-      platea_baja: 60000,
-      cancha: 85000,
-      vip: 120000
-    },
-    detalles_artista: {
-      nombre: "Soda Stereo (Homenaje)",
-      pais_origen: "Argentina",
-      generos: ["Rock Latino", "Pop"],
-      tour: "Ecos"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/lot210_calugalistado.jpg"
+    id: 1,
+    nombreComida: "Ricotta Batida",
+    descripcion: "Una receta de picoteo distinta, rica y muy fácil, que está lista en sólo 20 minutos o menos. Perfecta para tablas de picoteo.",
+    ingredientes: [
+      "Ricotta",
+      "Aceite de oliva",
+      "Hierbas frescas",
+      "Sal y pimienta",
+      "Miel (opcional)",
+      "Tomates cherry (para acompañar)",
+      "Tostadas o grisines"
+    ],
+    tiempoPreparacion: "20 min",
+    tiempoCoccion: "0 min",
+    cantidadPorciones: 4,
+    imagen: "https://placehold.co/600x400/white/black?text=Ricotta+Batida",
+    categoria: [
+      "Salado",
+      "Picoteo",
+      "Vegetariano"
+    ],
+    procedimientos: [
+      "Batir la ricotta en un procesador o con batidora hasta que esté muy cremosa y aireada.",
+      "Extender en un plato o bowl bajo.",
+      "Rociar con aceite de oliva, hierbas frescas picadas, sal y pimienta.",
+      "Servir acompañada de tostadas o galletas."
+    ],
+    observaciones: "Puedes agregar un toque de miel para un contraste agridulce."
   },
   {
-    id: "PT-002",
-    nombre_evento: "Festival del Huaso de Olmué",
-    tipo_evento: "festival",
-    fecha: "2026-01-15",
-    locacion: "Anfiteatro Parque El Patagual",
-    ciudad: "Olmué",
-    hora: "21:30",
-    descripcion: "Tradicional festival de folclore y música popular chilena.",
-    auspiciadores: ["Municipalidad de Olmué", "TVN", "Entel"],
-    precios: {
-      general: 20000,
-      palco: 45000
-    },
-    detalles_artista: {
-      nombre: "Varios Artistas",
-      pais_origen: "Chile/Internacional",
-      generos: ["Folclore", "Música Popular"],
-      duracion_dias: 4
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/olm034_calugalistado.jpg"
+    id: 2,
+    nombreComida: "Queque de Limón, Almendra y Cereza",
+    descripcion: "Un queque cítrico, fresco y veraniego. El bizcocho es de limón y almendra, con un glaseado de limón y cereza.",
+    ingredientes: [
+      "125 g Mantequilla sin sal",
+      "170 g Azúcar",
+      "Ralladura de 2 Limones",
+      "3 Huevos",
+      "140 g Harina sin polvos",
+      "40 g Harina de Almendras",
+      "20 ml Jugo de limón",
+      "150 g Azúcar flor (glaseado)",
+      "2 Cdas Pulpa de Cereza (glaseado)"
+    ],
+    tiempoPreparacion: "40 min",
+    tiempoCoccion: "50 min",
+    cantidadPorciones: 8,
+    imagen: "https://placehold.co/600x400/yellow/red?text=Queque+Limon+Almendra",
+    categoria: [
+      "Dulce",
+      "Queques",
+      "Hora del té"
+    ],
+    procedimientos: [
+      "Batir mantequilla con azúcar y ralladura hasta cremar.",
+      "Agregar huevos uno a uno.",
+      "Incorporar harinas y polvos intercalando con los líquidos (limón/leche).",
+      "Hornear a 170ºC por 50 minutos.",
+      "Para el glaseado: mezclar azúcar flor con pulpa de cereza y limón."
+    ],
+    observaciones: "Para el glaseado se pueden usar cerezas en almíbar trituradas."
   },
   {
-    id: "PT-004",
-    nombre_evento: "Jurassic World The Experience",
-    tipo_evento: "entretencion",
-    fecha: "2025-11-25",
-    locacion: "Movistar Arena",
-    ciudad: "Santiago",
-    hora: "10:00",
-    descripcion: "Una experiencia inmersiva con dinosaurios a tamaño real.",
-    auspiciadores: ["Universal Studios", "Banco Bci", "Ticketmaster"],
-    precios: {
-      general: 12000,
-      vip_family: 30000
-    },
-    detalles_artista: {
-      nombre: "Jurassic World",
-      tipo: "Exhibición",
-      franquicia: "Universal"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/wal251_calugalistado.jpg"
+    id: 3,
+    nombreComida: "Flatbread – Pan rápido y fácil",
+    descripcion: "Un pan plano muy fácil de hacer con una combinación de ingredientes salados y dulces exquisita.",
+    ingredientes: [
+      "Harina",
+      "Yogurt natural",
+      "Polvos de hornear",
+      "Sal",
+      "Aceite de oliva",
+      "Hierbas al gusto"
+    ],
+    tiempoPreparacion: "15 min",
+    tiempoCoccion: "10 min",
+    cantidadPorciones: 4,
+    imagen: "https://placehold.co/600x400/orange/white?text=Flatbread",
+    categoria: [
+      "Salado",
+      "Panes",
+      "Acompañamiento"
+    ],
+    procedimientos: [
+      "Mezclar harina con yogurt y sal hasta formar una masa.",
+      "Estirar en forma ovalada o irregular.",
+      "Cocinar en sartén caliente con un poco de aceite hasta dorar por ambos lados.",
+      "Servir tibio."
+    ],
+    observaciones: "No requiere levadura ni tiempos de espera largos."
   },
   {
-    id: "PT-008",
-    nombre_evento: "31 Minutos - Radio Guaripolo 2",
-    tipo_evento: "teatro",
-    fecha: "2026-01-31",
-    locacion: "Teatro Caupolicán",
-    ciudad: "Santiago",
-    hora: "17:00",
-    descripcion: "El show infantil/familiar con los personajes de la famosa serie de televisión.",
-    auspiciadores: ["Municipalidad de Santiago", "Canal 13", "Soprole"],
-    precios: {
-      galeria: 18000,
-      cancha: 28000,
-      palco: 45000
-    },
-    detalles_artista: {
-      nombre: "31 Minutos",
-      tipo: "Infantil/Familiar",
-      personaje_principal: "Tulio Triviño"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/wal259_calugalistado.jpg"
+    id: 4,
+    nombreComida: "Rollo de Merengue de Frutilla, Naranja y Pistachos",
+    descripcion: "Rollo de merengue firme por fuera y suave por dentro. Relleno con crema, agua de azahar y frutillas.",
+    ingredientes: [
+      "150 g Claras de Huevo",
+      "300 g Azúcar blanca",
+      "1 cdta Vinagre",
+      "60 g Pistachos picados",
+      "200 ml Crema de leche (relleno)",
+      "Agua de Azahar",
+      "150 g Frutillas picadas",
+      "Ralladura de Naranja"
+    ],
+    tiempoPreparacion: "40 min",
+    tiempoCoccion: "25 min",
+    cantidadPorciones: 8,
+    imagen: "https://placehold.co/600x400/pink/white?text=Rollo+Merengue",
+    categoria: [
+      "Dulce",
+      "Postres",
+      "Sin Gluten"
+    ],
+    procedimientos: [
+      "Hacer un merengue firme con las claras y azúcar.",
+      "Extender en bandeja y hornear 20-30 min a 160ºC.",
+      "Voltear sobre papel, dejar enfriar y rellenar con la crema batida con azahar y frutas.",
+      "Enrollar con cuidado ayudándose del papel."
+    ],
+    observaciones: "La corteza se craquelará al enrollar, es normal."
   },
   {
-    id: "PT-009",
-    nombre_evento: "Megadeth - This was our life 2026",
-    tipo_evento: "concierto",
-    fecha: "2026-05-04",
-    locacion: "Movistar Arena",
-    ciudad: "Santiago",
-    hora: "21:00",
-    descripcion: "La banda de thrash metal de Dave Mustaine en su gira mundial.",
-    auspiciadores: ["Hellfest", "Cerveza Kross", "Ticketmaster"],
-    precios: {
-      cancha: 55000,
-      platea_baja: 80000
-    },
-    detalles_artista: {
-      nombre: "Megadeth",
-      pais_origen: "Estados Unidos",
-      generos: ["Heavy Metal", "Thrash Metal"],
-      lider: "Dave Mustaine"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/rec103_calugalistado.jpg"
+    id: 5,
+    nombreComida: "Cheesecake de Chocolate y Frambuesa",
+    descripcion: "Cheesecake sin horno con base de Oreo, capa de frambuesas y relleno de chocolate.",
+    ingredientes: [
+      "300 g Galletas Oreo molidas",
+      "100 g Mantequilla derretida",
+      "210 g Queso Crema",
+      "120 g Chocolate semi-amargo derretido",
+      "150 ml Crema de leche",
+      "Frambuesas frescas o molidas"
+    ],
+    tiempoPreparacion: "30 min",
+    tiempoCoccion: "0 min",
+    cantidadPorciones: 10,
+    imagen: "https://placehold.co/600x400/brown/red?text=Cheesecake+Choco+Frambuesa",
+    categoria: [
+      "Dulce",
+      "Postres",
+      "Sin Horno"
+    ],
+    procedimientos: [
+      "Formar la base mezclando Oreo y mantequilla; refrigerar.",
+      "Poner una capa de frambuesas molidas sobre la base.",
+      "Batir queso crema con chocolate derretido y luego incorporar crema batida.",
+      "Verter sobre la base y refrigerar hasta cuajar."
+    ],
+    observaciones: "Usar chocolate de buena calidad para mejor sabor."
   },
   {
-    id: "PT-010",
-    nombre_evento: "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
-    tipo_evento: "concierto",
-    fecha: "2026-01-09",
-    locacion: "Quinta Vergara",
-    ciudad: "Viña del Mar",
-    hora: "22:00",
-    descripcion: "El artista puertorriqueño más influyente del género urbano.",
-    auspiciadores: ["Coca-Cola", "Spotify", "Municipalidad de Viña del Mar"],
-    precios: {
-      galeria: 50000,
-      platea_vip: 150000,
-      palco: 250000
-    },
-    detalles_artista: {
-      nombre: "Bad Bunny",
-      pais_origen: "Puerto Rico",
-      generos: ["Reggaetón", "Trap"],
-      album_promocion: "Un Verano Sin Ti"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/biz322_calugalistado.jpg"
+    id: 6,
+    nombreComida: "Palta Grillada Rellena",
+    descripcion: "Entrada distinta: palta grillada rellena con queso feta, quínoa, tomate y albahaca.",
+    ingredientes: [
+      "2 Paltas",
+      "1 Taza Quínoa cocida",
+      "100 g Tomate en cubos",
+      "Albahaca fresca",
+      "Queso Feta",
+      "Mayonesa (o Not Mayo)",
+      "Pesto"
+    ],
+    tiempoPreparacion: "30 min",
+    tiempoCoccion: "5 min",
+    cantidadPorciones: 2,
+    imagen: "https://placehold.co/600x400/green/black?text=Palta+Grillada",
+    categoria: [
+      "Salado",
+      "Entradas",
+      "Vegetariano"
+    ],
+    procedimientos: [
+      "Partir paltas por la mitad y grillar boca abajo en sartén o parrilla.",
+      "Mezclar quínoa con tomate, albahaca y aliños.",
+      "Rellenar la palta con la mezcla y terminar con queso feta, mayonesa y pesto."
+    ],
+    observaciones: "Servir inmediatamente mientras la palta está tibia."
   },
   {
-    id: "PT-011",
-    nombre_evento: "Doja Cat - Tour Ma Vie World Tour",
-    tipo_evento: "concierto",
-    fecha: "2026-02-10",
-    locacion: "Parque Padre Hurtado",
-    ciudad: "La Reina",
-    hora: "20:00",
-    descripcion: "Concierto al aire libre de la estrella pop y rapera estadounidense.",
-    auspiciadores: ["Pepsi", "Fashion Nova"],
-    precios: {
-      general: 60000,
-      vip_zona: 120000
-    },
-    detalles_artista: {
-      nombre: "Doja Cat",
-      pais_origen: "Estados Unidos",
-      generos: ["Pop", "Hip Hop", "R&B"],
-      tour: "Ma Vie"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/dgm158_calugalistado.jpg"
+    id: 7,
+    nombreComida: "Tostadas Francesas con Cornflakes",
+    descripcion: "Tostadas francesas crujientes por fuera gracias a los cornflakes. Ideales para brunch.",
+    ingredientes: [
+      "2 Huevos",
+      "200 ml Crema de leche",
+      "50 ml Leche",
+      "1 cdta Vainilla",
+      "150 g Cornflakes molidos",
+      "Pan Brioche rebanado grueso",
+      "Reducción de frambuesas (opcional)"
+    ],
+    tiempoPreparacion: "15 min",
+    tiempoCoccion: "10 min",
+    cantidadPorciones: 6,
+    imagen: "https://placehold.co/600x400/orange/brown?text=Tostadas+Francesas",
+    categoria: [
+      "Dulce",
+      "Desayuno",
+      "Brunch"
+    ],
+    procedimientos: [
+      "Mezclar huevos, crema, leche y vainilla.",
+      "Pasar el pan por la mezcla líquida y luego por los cornflakes molidos.",
+      "Dorar en sartén con mantequilla por ambos lados."
+    ],
+    observaciones: "Servir con yogurt, syrup y fruta fresca."
   },
   {
-    id: "PT-012",
-    nombre_evento: "Red Bull Batalla - Final Internacional 2026",
-    tipo_evento: "concierto",
-    fecha: "2026-04-11",
-    locacion: "Movistar Arena",
-    ciudad: "Santiago",
-    hora: "19:00",
-    descripcion: "La final mundial de la competencia de *freestyle* rap.",
-    auspiciadores: ["Red Bull", "Movistar", "Adidas"],
-    precios: {
-      galeria: 25000,
-      cancha: 40000
-    },
-    detalles_artista: {
-      nombre: "MC's Internacionales",
-      disciplina: "Freestyle Rap",
-      organizacion: "Red Bull"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/rdb003v2_calugalistado.jpg"
+    id: 8,
+    nombreComida: "Gratin de Papas",
+    descripcion: "Papas laminadas finas horneadas en mezcla de leche, salsa de tomate y queso gruyère.",
+    ingredientes: [
+      "500 g Papas",
+      "100 ml Leche",
+      "100 g Salsa de Tomate",
+      "150 ml Crema de Leche",
+      "2 Dientes de ajo",
+      "200 g Queso Gruyère rallado",
+      "Nuez moscada"
+    ],
+    tiempoPreparacion: "30 min",
+    tiempoCoccion: "60 min",
+    cantidadPorciones: 4,
+    imagen: "https://placehold.co/600x400/yellow/red?text=Gratin+de+Papas",
+    categoria: [
+      "Salado",
+      "Acompañamiento",
+      "Navidad"
+    ],
+    procedimientos: [
+      "Calentar leche, crema, salsa de tomate y ajo.",
+      "Laminar papas muy finas.",
+      "Intercalar capas de papas y queso en una fuente.",
+      "Verter el líquido caliente encima.",
+      "Hornear tapado a 180ºC por 1 hora, luego gratinar destapado."
+    ],
+    observaciones: "Si laminas las papas antes, déjalas en agua para que no se oxiden."
   },
   {
-    id: "PT-015",
-    nombre_evento: "Chico Trujillo + Los Mirlos",
-    tipo_evento: "concierto",
-    fecha: "2025-11-28",
-    locacion: "Factoría Italia",
-    ciudad: "Providencia",
-    hora: "20:00",
-    descripcion: "Una noche de cumbia chilena y peruana con dos grandes de la música tropical.",
-    auspiciadores: ["Cerveza Kross", "Municipalidad de Providencia"],
-    precios: {
-      general: 15000,
-      palco: 25000
-    },
-    detalles_artista: {
-      nombre: "Chico Trujillo / Los Mirlos",
-      pais_origen: "Chile/Perú",
-      generos: ["Cumbia", "Música Tropical"],
-      formato: "Doble Show"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/cco054_calugalistado.jpg"
+    id: 9,
+    nombreComida: "Torta de Cinnamon Roll Navideña",
+    descripcion: "Torta de rollo de canela gigante, rellena con especias navideñas (canela, cardamomo, clavo).",
+    ingredientes: [
+      "530 g Harina",
+      "250 ml Leche tibia",
+      "Levadura seca",
+      "2 Huevos",
+      "80 g Mantequilla",
+      "Relleno: Azúcar rubia, Canela, Jengibre, Cardamomo",
+      "Frosting: Queso crema, azúcar flor"
+    ],
+    tiempoPreparacion: "90 min",
+    tiempoCoccion: "90 min",
+    cantidadPorciones: 8,
+    imagen: "https://placehold.co/600x400/brown/white?text=Torta+Cinnamon+Roll",
+    categoria: [
+      "Dulce",
+      "Navidad",
+      "Bollería"
+    ],
+    procedimientos: [
+      "Hacer masa de levadura y dejar leudar 1 hora.",
+      "Estirar rectángulo, pincelar con mantequilla y cubrir con especias.",
+      "Cortar tiras y enrollarlas una sobre otra para formar un rollo gigante.",
+      "Hornear a 180ºC por 1.5 horas. Cubrir con frosting."
+    ],
+    observaciones: "La masa es pegajosa, eso asegura que quede húmeda."
   },
   {
-    id: "PT-016",
-    nombre_evento: "Glenn Hughes - Tour De Despedida",
-    tipo_evento: "concierto",
-    fecha: "2025-11-27",
-    locacion: "Teatro Coliseo",
-    ciudad: "Santiago",
-    hora: "21:00",
-    descripcion: "El ex bajista y vocalista de Deep Purple se despide de los escenarios chilenos.",
-    auspiciadores: ["Rock & Pop", "Banco de Chile"],
-    precios: {
-      galeria: 30000,
-      cancha: 45000
-    },
-    detalles_artista: {
-      nombre: "Glenn Hughes",
-      pais_origen: "Reino Unido",
-      generos: ["Hard Rock", "Blues Rock"],
-      banda_original: "Deep Purple"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/tsr092_calugalistado.jpg"
+    id: 10,
+    nombreComida: "Muffins de Chocolate, Pera y Especias",
+    descripcion: "Muffins húmedos con puré de pera, especias y chocolate. Sabor a invierno/navidad.",
+    ingredientes: [
+      "200 g Puré de Pera",
+      "150 g Mantequilla",
+      "150 g Azúcar rubia",
+      "2 Huevos",
+      "130 g Harina",
+      "50 g Cacao amargo",
+      "Canela, Jengibre, Nuez Moscada",
+      "80 g Chocolate derretido"
+    ],
+    tiempoPreparacion: "20 min",
+    tiempoCoccion: "25 min",
+    cantidadPorciones: 12,
+    imagen: "https://placehold.co/600x400/darkbrown/green?text=Muffins+Pera+Choco",
+    categoria: [
+      "Dulce",
+      "Desayuno",
+      "Navidad"
+    ],
+    procedimientos: [
+      "Batir mantequilla y azúcar. Agregar puré de pera y huevos.",
+      "Incorporar secos (harina, cacao, especias).",
+      "Agregar chocolate derretido al final.",
+      "Hornear 25-30 min a 170ºC."
+    ],
+    observaciones: "Se puede usar compota de pera comprada o casera."
   },
   {
-    id: "PT-N01",
-    nombre_evento: "Festival de Guitarra Chile",
-    tipo_evento: "festival",
-    fecha: "2026-03-10",
-    locacion: "Teatro Oriente",
-    ciudad: "Providencia",
-    hora: "20:00",
-    descripcion: "El festival más grande de guitarra, con clínicas y conciertos de virtuosos nacionales e internacionales.",
-    auspiciadores: ["Gibson", "Fender"],
-    precios: {
-      general: 30000
-    },
-    detalles_artista: {
-      nombre: "Varios Guitarristas",
-      generos: ["Instrumental", "Rock", "Jazz"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/zoc057v2_calugalistado.jpg"
+    id: 11,
+    nombreComida: "Galletas de Café, Especias y Chocolate",
+    descripcion: "Galletas navideñas fáciles que combinan café, especias y chocolate.",
+    ingredientes: [
+      "Harina",
+      "Mantequilla",
+      "Café espresso o soluble",
+      "Cacao en polvo",
+      "Canela y especias",
+      "Azúcar"
+    ],
+    tiempoPreparacion: "30 min",
+    tiempoCoccion: "12 min",
+    cantidadPorciones: 24,
+    imagen: "https://placehold.co/600x400/brown/black?text=Galletas+Cafe",
+    categoria: [
+      "Dulce",
+      "Galletas",
+      "Regalos"
+    ],
+    procedimientos: [
+      "Formar una masa con todos los ingredientes.",
+      "Refrigerar la masa antes de cortar.",
+      "Cortar con moldes y hornear hasta que estén firmes."
+    ],
+    observaciones: "Perfectas para regalar en bolsitas."
   },
   {
-    id: "PT-N02",
-    nombre_evento: "Gira Concierto Acústico Los Jaivas",
-    tipo_evento: "concierto",
-    fecha: "2025-11-29",
-    locacion: "Movistar Arena",
-    ciudad: "Santiago",
-    hora: "21:00",
-    descripcion: "La banda chilena en un formato íntimo, repasando sus grandes clásicos.",
-    auspiciadores: ["Banco de Chile", "Radio Futuro"],
-    precios: {
-      platea: 50000
-    },
-    detalles_artista: {
-      nombre: "Los Jaivas",
-      generos: ["Rock Progresivo", "Folclore Chileno"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/ppr026_calugalistado.jpg"
+    id: 12,
+    nombreComida: "Torta de Limón, Albahaca y Menta",
+    descripcion: "Torta con bizcocho de hierbas (albahaca/menta) y frosting de mascarpone y limón.",
+    ingredientes: [
+      "Albahaca fresca",
+      "Menta fresca",
+      "Aceite de Oliva",
+      "Azúcar",
+      "Limón sutil",
+      "Mascarpone (frosting)"
+    ],
+    tiempoPreparacion: "60 min",
+    tiempoCoccion: "40 min",
+    cantidadPorciones: 12,
+    imagen: "https://placehold.co/600x400/green/white?text=Torta+Limon+Albahaca",
+    categoria: [
+      "Dulce",
+      "Tortas",
+      "Primavera"
+    ],
+    procedimientos: [
+      "Procesar hierbas con aceite de oliva.",
+      "Usar este aceite para batir el bizcocho con huevos y azúcar.",
+      "Hornear en capas.",
+      "Rellenar con frosting de mascarpone y limón."
+    ],
+    observaciones: "No procesar las hierbas en exceso para evitar amargor."
   },
   {
-    id: "PT-N03",
-    nombre_evento: "Monster Jam",
-    tipo_evento: "deporte",
-    fecha: "2025-12-05",
-    locacion: "Estadio Nacional Julio Martínez",
-    ciudad: "Santiago",
-    hora: "15:00",
-    descripcion: "El show de camionetas monstruo más famoso del mundo, con acrobacias extremas.",
-    auspiciadores: ["Ford", "Movistar", "Gatorade"],
-    precios: {
-      galeria: 15000,
-      campo: 40000
-    },
-    detalles_artista: {
-      nombre: "Monster Trucks",
-      disciplina: "Motorsport",
-      show: "Freestyle"
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/wal248_calugalistado.jpg"
+    id: 13,
+    nombreComida: "Fondue de Queso y Tomate",
+    descripcion: "Fondue rápido (15 min) con salsa de tomate y quesos, ideal para Halloween o picoteos.",
+    ingredientes: [
+      "3 Dientes de Ajo",
+      "200 g Queso Crema",
+      "200 ml Salsa de Tomate",
+      "200 g Queso rallado (Gruyere/Emmental)",
+      "Tostadas para acompañar"
+    ],
+    tiempoPreparacion: "5 min",
+    tiempoCoccion: "15 min",
+    cantidadPorciones: 6,
+    imagen: "https://placehold.co/600x400/red/yellow?text=Fondue+Queso+Tomate",
+    categoria: [
+      "Salado",
+      "Picoteo",
+      "Halloween"
+    ],
+    procedimientos: [
+      "Saltear ajo en una olla.",
+      "Agregar salsa de tomate y quesos.",
+      "Cocinar revolviendo hasta fundir y homogeneizar.",
+      "Servir caliente con tostadas."
+    ],
+    observaciones: "No cocinar en exceso para que el queso no se separe (corte)."
   },
   {
-    id: "PT-N04",
-    nombre_evento: "Inti Illimani Histórico - Reencuentro",
-    tipo_evento: "concierto",
-    fecha: "2025-12-26",
-    locacion: "Teatro Caupolicán",
-    ciudad: "Santiago",
-    hora: "20:30",
-    descripcion: "Concierto que celebra la trayectoria del grupo emblema de la Nueva Canción Chilena.",
-    auspiciadores: ["Municipalidad de Santiago", "Canal 13"],
-    precios: {
-      galeria: 18000,
-      platea: 35000
-    },
-    detalles_artista: {
-      nombre: "Inti Illimani Histórico",
-      pais_origen: "Chile",
-      generos: ["Folclore", "Nueva Canción Chilena"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/emk131_calugalistado.jpg"
+    id: 14,
+    nombreComida: "Mini Tortas de Hojarasca",
+    descripcion: "Clásico dulce chileno en versión individual. Capas de masa crocante con manjar.",
+    ingredientes: [
+      "Masa de hojarasca (harina, yemas, pisco/vinagre)",
+      "Manjar (dulce de leche)",
+      "Merengue italiano o suizo",
+      "Mostacillas para decorar"
+    ],
+    tiempoPreparacion: "60 min",
+    tiempoCoccion: "10 min",
+    cantidadPorciones: 6,
+    imagen: "https://placehold.co/600x400/brown/white?text=Mini+Tortas+Hojarasca",
+    categoria: [
+      "Dulce",
+      "Chilena",
+      "Clásicos"
+    ],
+    procedimientos: [
+      "Cortar discos de masa hojarasca y hornear hasta dorar.",
+      "Rellenar intercalando discos con manjar.",
+      "Cubrir con merengue y sopletear si se desea."
+    ],
+    observaciones: "Dejar reposar para que la masa se impregne del manjar."
   },
   {
-    id: "PT-N05",
-    nombre_evento: "Pierce The Veil - I Can't Hear You World Tour",
-    tipo_evento: "concierto",
-    fecha: "2025-12-10",
-    locacion: "Teatro Coliseo",
-    ciudad: "Santiago",
-    hora: "20:00",
-    descripcion: "La banda estadounidense de post-hardcore en su regreso a Chile.",
-    auspiciadores: ["Rockaxis", "Converse"],
-    precios: {
-      general: 35000,
-      early_entry: 50000
-    },
-    detalles_artista: {
-      nombre: "Pierce The Veil",
-      pais_origen: "Estados Unidos",
-      generos: ["Post-Hardcore", "Emo"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/dgm143_calugalistado.jpg"
-  },
-  {
-    id: "PT-N06",
-    nombre_evento: "Perversión Fest",
-    tipo_evento: "festival",
-    fecha: "2025-12-13",
-    locacion: "Teatro Caupolicán",
-    ciudad: "Santiago",
-    hora: "18:00",
-    descripcion: "Festival de música alternativa y underground con bandas nacionales e internacionales.",
-    auspiciadores: ["Cerveza Kross"],
-    precios: {
-      general: 25000
-    },
-    detalles_artista: {
-      nombre: "Varios Artistas",
-      generos: ["Rock", "Underground"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/cco055_calugalistado.jpg"
-  },
-  {
-    id: "PT-N07",
-    nombre_evento: "Ritual of the Damned",
-    tipo_evento: "concierto",
-    fecha: "2026-01-20",
-    locacion: "Blondie",
-    ciudad: "Santiago",
-    hora: "22:00",
-    descripcion: "Noche de Metal Extremo y música oscura en el corazón de Santiago.",
-    auspiciadores: ["Nescafé", "Red Bull"],
-    precios: {
-      general: 15000
-    },
-    detalles_artista: {
-      nombre: "Bandas de Metal",
-      generos: ["Black Metal", "Death Metal"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/cco059_calugalistado.jpg"
-  },
-  {
-    id: "PT-N08",
-    nombre_evento: "Claudio Narea - Sudamerican Rocker",
-    tipo_evento: "concierto",
-    fecha: "2025-12-27",
-    locacion: "Teatro Nescafé de las Artes",
-    ciudad: "Santiago",
-    hora: "21:00",
-    descripcion: "El ex guitarrista de Los Prisioneros interpretando sus éxitos y material propio.",
-    auspiciadores: ["BancoEstado", "Radio Sonar"],
-    precios: {
-      platea_baja: 25000,
-      platea_alta: 18000
-    },
-    detalles_artista: {
-      nombre: "Claudio Narea",
-      pais_origen: "Chile",
-      generos: ["Rock", "Pop"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/cco057_calugalistado.jpg"
-  },
-  {
-    id: "PT-N09",
-    nombre_evento: "La Brígida Orquesta + Ana Tijoux",
-    tipo_evento: "concierto",
-    fecha: "2026-01-17",
-    locacion: "Anfiteatro Parque El Patagual",
-    ciudad: "Olmué",
-    hora: "20:00",
-    descripcion: "Combinación de jazz, hip-hop y líricas sociales con dos exponentes chilenos.",
-    auspiciadores: ["Fondart", "Pisco Mistral"],
-    precios: {
-      general: 20000
-    },
-    detalles_artista: {
-      nombre: "La Brígida Orquesta / Ana Tijoux",
-      pais_origen: "Chile",
-      generos: ["Hip Hop", "Jazz"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/cco074_calugalistado.jpg"
-  },
-  {
-    id: "PT-N10",
-    nombre_evento: "Love the 90's Chile",
-    tipo_evento: "festival",
-    fecha: "2026-03-20",
-    locacion: "Movistar Arena",
-    ciudad: "Santiago",
-    hora: "21:00",
-    descripcion: "El festival que trae de vuelta a las estrellas pop y dance más grandes de los años 90.",
-    auspiciadores: ["Coca-Cola", "Entel"],
-    precios: {
-      cancha: 45000,
-      platea: 65000,
-      vip: 80000
-    },
-    detalles_artista: {
-      nombre: "Artistas de los 90's",
-      generos: ["Pop", "Dance", "Eurodance"]
-    },
-    imagen_url: "https://static.ptocdn.net/images/eventos/wal257_calugalistado.jpg"
+    id: 15,
+    nombreComida: "Galletas de Tomate y Flores Prensadas",
+    descripcion: "Galletas saladas muy estéticas con flores comestibles prensadas, ideales para tablas.",
+    ingredientes: [
+      "Harina",
+      "Mantequilla",
+      "Concentrado de tomate o tomate deshidratado",
+      "Flores comestibles (pensamientos, etc.)",
+      "Hierbas"
+    ],
+    tiempoPreparacion: "30 min",
+    tiempoCoccion: "15 min",
+    cantidadPorciones: 20,
+    imagen: "https://placehold.co/600x400/beige/red?text=Galletas+Tomate+Flores",
+    categoria: [
+      "Salado",
+      "Galletas",
+      "Picoteo"
+    ],
+    procedimientos: [
+      "Hacer masa quebrada salada con tomate.",
+      "Estirar y cortar galletas.",
+      "Poner una flor comestible sobre cada galleta y pasar uslero suavemente para adherir.",
+      "Hornear cuidando que no se quemen las flores."
+    ],
+    observaciones: "Usar flores libres de pesticidas."
   }
-]
+];
 
 export const handlers = [
-  
 
-  /* 
-  graphql.query('ObtenerEventos', async () => {
-    await delay(5000)
-    return HttpResponse.json({data: {eventos}})
-  }), 
-  */
-
-  http.get("/api/eventos", async (req) => {
+  http.get("/api/recetas", async (req) => {
     await delay(3000) 
     console.log('req', req)
-    return HttpResponse.json(eventos)
+    return HttpResponse.json(recetas)
 
   }),
 
-  graphql.query('ObtenerEventoPorID', async ({ variables }) => {
+  graphql.query('ObtenerRecetaPorID', async ({ variables }) => {
     await delay(3000);
     const rawId = variables?.id
     if (!rawId) {
@@ -454,22 +465,22 @@ export const handlers = [
       });
     }
 
-    const eventoId = rawId.toLowerCase()
+    const recetaId = rawId.toLowerCase()
 
-    const evento = eventos.find(e => e.id.toLowerCase() === eventoId);
+    const receta = recetas.find(e => e.id.toLowerCase() === recetaId);
     
-    if (!evento) {
+    if (!receta) {
       return HttpResponse.json({
         errors: [
           {
-            message: `Evento id: ${eventoId}`,
-            extensions: { code: 'EVENTO NO ENCONTRADO' }
+            message: `Receta ID: ${recetaId}`,
+            extensions: { code: 'RECETA NO ENCONTRADA' }
           }
         ]
       });
     }
 
-    return HttpResponse.json({ data: { evento } });
+    return HttpResponse.json({ data: { receta } });
   }),
 
  
