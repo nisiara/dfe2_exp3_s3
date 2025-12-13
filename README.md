@@ -88,6 +88,11 @@ src/
 - **Testing de navegación** con MemoryRouter
 - **Interceptación de API calls** en tests E2E
 
+### ESLint
+- **Linter** para asegurar estilo y calidad del código.
+- Ejecutar: `npm run lint`
+- Auto-fix: `npm run lint -- --fix`
+
 ### Comandos de Testing
 ```bash
 npm run test          # Ejecutar tests unitarios en modo watch
@@ -107,8 +112,9 @@ npx cypress run       # Ejecutar tests E2E en modo headless
 - `App.test.jsx` - Integración de componentes y props
 
 #### Tests E2E (Cypress)
-- `listar-recetas.cy.js` - Navegación y conteo de recetas en el listado
-- `recipe-detail.cy.js` - Flujo completo desde listado hasta detalle de la receta
+- `navigation.cy.js` - Navegación por el menú: Inicio, Todas las Recetas, Nosotros (3 pruebas)
+- `recipe-detail.cy.js` - Flujo desde listado hasta detalle de la receta y flujo directo a la receta. (2 prueba)
+
 
 ## 🔐 Consultas GraphQL
 
@@ -182,4 +188,4 @@ Abrir: `http://localhost:5173`
 
 ---
 
-*Desarrollado con* ❤️ usando React, Apollo MSW y un montón de cosas.
+*Desarrollado con* ❤️, 🤬, 😰 y 😰  usando React, Apollo MSW y un montón de cosas.
