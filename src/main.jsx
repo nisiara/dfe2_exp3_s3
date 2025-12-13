@@ -13,7 +13,7 @@ async function enableMocking() {
 }
 
 const apolloClient = new ApolloClient({
-  link: new HttpLink({uri: 'graphql'}),
+  link: new HttpLink({uri: '/graphql'}),
   cache: new InMemoryCache()
 })
 

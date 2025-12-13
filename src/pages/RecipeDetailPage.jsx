@@ -8,6 +8,7 @@ import Loading from "../components/loading/Loading";
 const GQL_OBTENER_RECETA_POR_ID = gql`
   query ObtenerRecetaPorID($id: ID!) {
     receta(id: $id) {
+      imagen
       nombre
       descripcion
       ingredientes
@@ -25,7 +26,6 @@ const GQL_OBTENER_RECETA_POR_ID = gql`
 const RecipeDetailPage = () => {
   const { id } = useParams();
   
-
   const { loading, error, data } = useQuery(GQL_OBTENER_RECETA_POR_ID, {
     variables: { id: id },
     fetchPolicy: 'network-only'
@@ -34,7 +34,6 @@ const RecipeDetailPage = () => {
   if (loading) {
     return (
       <section>
-        <PageTitle title='Detalle Receta'/>
         <Loading />
       </section>
     );
@@ -43,7 +42,6 @@ const RecipeDetailPage = () => {
   if (error) {
     return (
       <section>
-        <PageTitle title='Detalle Receta'/>
         <div className="text-sm text-center text-red-900 p-4 bg-red-200 rounded-md">
           <p>Error al cargar la receta</p>
           <p>{error.message}</p> 
@@ -66,43 +64,55 @@ const RecipeDetailPage = () => {
   }
   
   return (
-    <section>
+    <main>
+      <img className="object-cover h-[400px] w-full mb-7 rounded-lg" src={RECETA.imagen} alt={RECETA.nombre} />
+      <ul className="flex gap-2 justify-center mb-3">
+        {RECETA.categorias.map( categoria => (
+          <li className="text-xs bg-indigo-100 py-1 px-3 rounded-md text-indigo-700">{categoria}</li>
+        ))}
+      </ul>
+      <h1 className="text-3xl text-center font-bold text-indigo-900 uppercase">{RECETA.nombre}</h1>
+      <h4  className="text-md font-light text-center mb-6 text-zinc-400">{RECETA.descripcion}</h4>
+
       
-      <h6 className="uppercase text-sm text-amber-600	">{RECETA.tipo_RECETA}</h6>
-      <h1 className="text-3xl font-bold text-gray-950 uppercase">{RECETA.nombre}</h1>
-      <h4  className="text-xl mb-6">{RECETA.descripcion}</h4>
-      <hr />
-      <aside className="grid grid-cols-12 gap-4 mt-8">
-         <div className="py-4 col-span-12 md:col-span-6  text-gray-950 flex flex-col border b-color-gray-200">
-          <span className="uppercase text-xs">locacion</span>
-          <b className="text-2xl capitalize">{RECETA.locacion}</b>
+      <aside className="grid grid-cols-12 gap-4 pt-5 mt-9 border-t border-t-indigo-100">
+         <div className="col-span-12 md:col-span-4 flex flex-col text-center">
+          <span className="uppercase text-xs text-zinc-400">tiempo de preparación</span>
+          <b className="text-xl capitalize text-indigo-900">{RECETA.tiempoPreparacion}</b>
         </div>
-         <div className="py-4 col-span-12 md:col-span-6  text-gray-950 flex flex-col border b-color-gray-200">
-          <span className="uppercase text-xs">ciudad</span>
-          <b className="text-2xl capitalize">{RECETA.ciudad}</b>
+         <div className="col-span-12 md:col-span-4 flex flex-col text-center">
+          <span className="uppercase text-xs text-zinc-400">tiempo de cocción</span>
+          <b className="text-xl capitalize text-indigo-900">{RECETA.tiempoCoccion}</b>
         </div>
-         <div className="py-4 col-span-12 md:col-span-6  text-gray-950 flex flex-col border b-color-gray-200">
-          <span className="uppercase text-xs">fecha</span>
-          <b className="text-2xl capitalize">{RECETA.fecha}</b>
-        </div>
-         <div className="py-4 col-span-12 md:col-span-6  text-gray-950 flex flex-col border b-color-gray-200">
-          <span className="uppercase text-xs">hora</span>
-          <b className="text-2xl capitalize">{RECETA.hora}</b>
-        </div>
-         <div className="py-4 col-span-12 md:col-span-6  text-gray-950 flex flex-col border b-color-gray-200">
-          <span className="uppercase text-xs mb-2">precios</span>
-          <div className="flex w-full justify-center gap-6">
-            {Object.entries(RECETA.precios || {}).map(([zona, precio]) => (
-              <div key={zona} className="flex flex-col text-sm justify-center items-center">
-                <span className="text-xs uppercase text-slate-500">{zona.replace('_', ' ')}</span>
-                <b className="text-2xl capitalize">${precio.toLocaleString('es-CL')}</b>
-              </div>
-            ))}
-          </div>
-            
+         <div className="col-span-12 md:col-span-4 flex flex-col text-center">
+          <span className="uppercase text-xs text-zinc-400">porciones</span>
+          <b className="text-xl capitalize text-indigo-900">{RECETA.cantidadPorciones}</b>
         </div>
       </aside>
-    </section>
+
+      <section className="grid grid-cols-12 gap-4 pt-12 mt-6 border-t border-t-indigo-100">
+        <aside className="col-span-12 md:col-span-4">
+          <h5 className="uppercase text-xs text-zinc-400 mb-2">ingredientes</h5>
+          <ul className="list-disc list-inside">
+            {RECETA.ingredientes.map(ingrediente => (
+              <li className="text-sm capitalize text-indigo-900 mt-1">{ingrediente}</li>
+            ))}
+          </ul>
+
+          <h5 className="uppercase text-xs text-zinc-400 mt-6">observaciones</h5>
+          <p className="text-sm text-indigo-900 mt-1">{RECETA.observaciones ? RECETA.observaciones : 'Sin observaciones'}</p>
+
+        </aside>
+        <aside className="col-span-12 md:col-span-8">
+          <h5 className="uppercase text-xs text-zinc-400 mb-2">Preparación</h5>
+          <ol className="list-decimal list-inside">
+            {RECETA.procedimiento.map(proc => (
+              <li className="text-sm capitalize text-indigo-900 mt-1">{proc}</li>
+            ))}
+          </ol>
+        </aside>
+      </section>
+    </main>
   );
 }
  

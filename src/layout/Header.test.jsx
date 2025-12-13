@@ -21,15 +21,15 @@ describe('Conjunto de test para componente Header: ', () => {
 
   it('Mostrar logo.', () => {
     renderComponent()
-    const logo = screen.getByRole('img', { name: 'Logo Punto Ticket' })
+    const logo = screen.getByRole('img', { name: 'Logo Milk & Crumbs' })
     expect(logo).toBeDefined()
 
   })
 
   it('Verificar ruta logo', () => {
     renderComponent()
-    const logo = screen.getByRole('img', { name: 'Logo Punto Ticket' })
-    expect(logo).toHaveAttribute('src', '/images/logo.svg')
+    const logo = screen.getByRole('img', { name: 'Logo Milk & Crumbs' })
+    expect(logo).toHaveAttribute('src', '/images/logo.png')
   })
 
   it('Verificar ruta home', () => {
@@ -40,8 +40,8 @@ describe('Conjunto de test para componente Header: ', () => {
 
   it('Verificar ruta eventos', () => {
     renderComponent()
-    const enlaceEventos = screen.getByRole('link', { name: /Ver todos los eventos/i })
-    expect(enlaceEventos).toHaveAttribute('href', '/events');
+    const enlaceRecetas = screen.getByRole('link', { name: /Ver todas las recetas/i })
+    expect(enlaceRecetas).toHaveAttribute('href', '/recipes');
   })
 
   it('Verificar ruta nosotros', () => {
@@ -57,9 +57,9 @@ describe('Conjunto de test para componente Header: ', () => {
       </MemoryRouter>
     );
 
-    const enlaceEventos = screen.getByRole('link', { name: /Ver todos los eventos/i });
-    expect(enlaceEventos).toHaveClass('text-md px-2 py-1 block font-bold text-gray-950');
-    expect(enlaceEventos).not.toHaveClass('border-b-2 border-b-gray-950');
+    const enlaceRecetas = screen.getByRole('link', { name: /Ver todas las recetas/i });
+    expect(enlaceRecetas).toHaveClass('text-lg px-2 py-1 block font-extrabold text-indigo-900');
+    expect(enlaceRecetas).not.toHaveClass('border-b-2 border-b-indigo-900');
   });
 
 
@@ -71,20 +71,20 @@ describe('Conjunto de test para componente Header: ', () => {
     );
 
     const enlaceInicio = screen.getByRole('link', { name: /Inicio/i });
-    expect(enlaceInicio).toHaveClass('border-b-2 border-b-gray-950');
-    expect(enlaceInicio).toHaveClass('text-md px-2 py-1 block font-bold text-gray-950');
+    expect(enlaceInicio).toHaveClass('text-lg px-2 py-1 block font-extrabold text-indigo-900');
+    expect(enlaceInicio).toHaveClass('border-b-2 border-b-indigo-900');
   });
 
-  it('Aplica clase "active" en la ruta de "Ver todos los eventos"', () => {
+  it('Aplica clase "active" en la ruta de "Ver todos las recetas"', () => {
     render(
-      <MemoryRouter initialEntries={['/events']}>
+      <MemoryRouter initialEntries={['/recipes']}>
         <Header />
       </MemoryRouter>
     );
 
-    const enlaceEventos = screen.getByRole('link', { name: /Ver todos los eventos/i });
-    expect(enlaceEventos).toHaveClass('border-b-2 border-b-gray-950');
-    expect(enlaceEventos).toHaveClass('text-md px-2 py-1 block font-bold text-gray-950');
+    const enlaceRecetas = screen.getByRole('link', { name: /Ver todas las recetas/i });
+    expect(enlaceRecetas).toHaveClass('border-b-2 border-b-indigo-900');
+    expect(enlaceRecetas).toHaveClass('text-lg px-2 py-1 block font-extrabold text-indigo-900');
   });
 
 
@@ -96,19 +96,19 @@ describe('Conjunto de test para componente Header: ', () => {
     );
 
     const navLinkNosotros = screen.getByRole('link', { name: /Nosotros/i });
-    expect(navLinkNosotros).toHaveClass('border-b-2 border-b-gray-950'); 
+    expect(navLinkNosotros).toHaveClass('border-b-2 border-b-indigo-900'); 
   })
 
-  it('No aplaicar estilo "active" en sub-rutas (atributo: end)', () => {
+  it('No aplicar estilo "active" en sub-rutas (atributo: end)', () => {
     render(
       <MemoryRouter initialEntries={['/events/details']}>
         <Header />
       </MemoryRouter>
     );
 
-    const enlaceEventos = screen.getByRole('link', { name: /Ver todos los eventos/i });
-    expect(enlaceEventos).not.toHaveClass('border-b-2 border-b-gray-950');
-    expect(enlaceEventos).toHaveClass('text-md px-2 py-1 block font-bold text-gray-950');
+    const enlaceRecetas = screen.getByRole('link', { name: /Ver todas las recetas/i });
+    expect(enlaceRecetas).not.toHaveClass('border-b-2 border-b-indigo-900');
+    expect(enlaceRecetas).toHaveClass('text-lg px-2 py-1 block font-extrabold text-indigo-900');
   });
 
 })

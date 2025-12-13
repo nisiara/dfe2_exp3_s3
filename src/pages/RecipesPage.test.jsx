@@ -2,92 +2,97 @@ import { render, screen, cleanup } from "@testing-library/react";
 import { describe, it, expect, afterEach } from "vitest";
 import { MemoryRouter } from 'react-router'
 
-import EventsPage from "./EventsPage"
+import RecipesPage from "./RecipesPage"
 
-const mockEventos = [
+const mockRecetas = [
   {
-    id: "PT-001",
-    nombre_evento: 'Soda Stereo - Ecos',
-    tipo_evento: 'concierto',
-    locacion: 'Movistar Arena',
-    ciudad: 'Santiago',
-    fecha: '2026-03-26',
-    imagen_url: "https://static.ptocdn.net/images/eventos/lot210_calugalistado.jpg"
+    id: 1,
+    nombre: "Ricotta Batida",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/02/Ricotta-batida-IMAGEN-DESTACADA.jpg",
+    categorias: [
+      "Salado",
+      "Picoteo",
+      "Vegetariano"
+    ],
   },
   {
-    id: "PT-010",
-    nombre_evento: "Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour",
-    tipo_evento: "concierto",
-    locacion: "Quinta Vergara",
-    ciudad: "Viña del Mar",
-    fecha: "2026-01-09",
-    imagen_url: "https://static.ptocdn.net/images/eventos/biz322_calugalistado.jpg"
-  }
+    id: 2,
+    nombre: "Queque de Limón, Almendra y Cereza",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/02/Queque-de-Limon-Almendra-y-Cereza-IMAGEN-DESTACADA.jpg",
+    categorias: [
+      "Dulce",
+      "Queques",
+      "Hora del té"
+    ],
+  },
 ]
 
-const renderEventsPage = (props) => {
+const renderRecipePage = (props) => {
   render(
     <MemoryRouter>
-      <EventsPage {...props} />
+      <RecipesPage {...props} />
     </MemoryRouter>
   )
 }
 
-describe('Conjunto de tests para el componente EventsPage', () => {
+describe('Conjunto de tests para el componente RecipesPage', () => {
   
   afterEach(cleanup)
   
   it('Mostrar mensaje de carga', () => {
-    renderEventsPage({ 
+    renderRecipePage({ 
       loading: true, 
       listaEventos: [], 
       error: null 
     })
-    expect(screen.getByText('Cargando lista de eventos')).toBeInTheDocument()
+    expect(screen.getByText('Cargando')).toBeInTheDocument()
   })
 
-  it('Mostrar lista de eventos', () => {
-    renderEventsPage({ 
+  it('Mostrar lista de recetas', () => {
+    renderRecipePage({ 
       loading: false, 
-      listaEventos: mockEventos, 
+      listaRecetas: mockRecetas, 
       error: null 
     })
     
-    expect(screen.getByText('Soda Stereo - Ecos')).toBeInTheDocument()
-    expect(screen.getByText('Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour')).toBeInTheDocument()
-    expect(screen.getByText(/Movistar Arena/i)).toBeInTheDocument()
-    expect(screen.getByText(/Quinta vergara/i)).toBeInTheDocument()
-    expect(screen.getByText(/Santiago/i)).toBeInTheDocument()
-    expect(screen.getByText(/viña del mar/i)).toBeInTheDocument()
+    expect(screen.getByText('Ricotta Batida')).toBeInTheDocument()
+    expect(screen.getByText(/Salado/i)).toBeInTheDocument()
+    expect(screen.getByText(/Picoteo/i)).toBeInTheDocument()
+    expect(screen.getByText(/Vegetariano/i)).toBeInTheDocument()
+
+    expect(screen.getByText('Queque de Limón, Almendra y Cereza')).toBeInTheDocument()
+    expect(screen.getByText(/Dulce/i)).toBeInTheDocument()
+    expect(screen.getByText(/Queques/i)).toBeInTheDocument()
+    expect(screen.getByText(/Hora del té/i)).toBeInTheDocument()
   })
 
-  it('Link apunta al detalle del evento"', () => {
-    renderEventsPage({ 
+  it('Link apunta al detalle de la receta', () => {
+    renderRecipePage({ 
       loading: false, 
-      listaEventos: mockEventos, 
+      listaRecetas: mockRecetas, 
       error: null 
     })
     
-    const enlaces = screen.getAllByRole('link', { name: 'Ver Evento' })
+    const enlaces = screen.getAllByRole('link', { name: 'Ver Receta' })
     expect(enlaces).toHaveLength(2)
     
     const urls = enlaces.map(enlace => enlace.getAttribute('href'))
-    expect(urls).toContain('/events/PT-001')
-    expect(urls).toContain('/events/PT-010')
+    expect(urls).toContain('/recipes/1')
+    expect(urls).toContain('/recipes/2')
   })
 
-  it('Mostrar la imagen de cada evento', () => {
-    renderEventsPage({ 
+  it('Mostrar la imagen de cada receta', () => {
+    renderRecipePage({ 
       loading: false, 
-      listaEventos: mockEventos, 
+      listaRecetas: mockRecetas, 
       error: null 
     })
     const imagenes = screen.getAllByRole('img')
-    const imagenSoda = imagenes.find(img => img.alt === 'Soda Stereo - Ecos')
-    const imagenJazz = imagenes.find(img => img.alt === 'Bad Bunny - DeBÍ TiRAR MáS FOToS World Tour')
+    const imagenSoda = imagenes.find(img => img.alt === 'Ricotta Batida')
+    const imagenJazz = imagenes.find(img => img.alt === 'Queque de Limón, Almendra y Cereza')
     
-    expect(imagenSoda).toHaveAttribute('src', 'https://static.ptocdn.net/images/eventos/lot210_calugalistado.jpg')
-    expect(imagenJazz).toHaveAttribute('src', 'https://static.ptocdn.net/images/eventos/biz322_calugalistado.jpg')
+    expect(imagenSoda).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2022/02/Ricotta-batida-IMAGEN-DESTACADA.jpg')
+    expect(imagenJazz).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2022/02/Queque-de-Limon-Almendra-y-Cereza-IMAGEN-DESTACADA.jpg')
   })
 
 

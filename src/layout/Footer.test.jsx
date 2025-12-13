@@ -25,10 +25,10 @@ describe('Conjunto test componente Footer: ', () => {
       expect(enlaceHome).toHaveAttribute('href', '/');
     })
   
-    it('Verificar ruta eventos', () => {
+    it('Verificar ruta recetas', () => {
       renderComponent()
-      const enlaceEventos = screen.getByRole('link', { name: /Todos los eventos/i })
-      expect(enlaceEventos).toHaveAttribute('href', '/events');
+      const enlaceRecetas = screen.getByRole('link', { name: /Todas las recetas/i })
+      expect(enlaceRecetas).toHaveAttribute('href', '/recipes');
     })
   
     it('Verificar ruta nosotros', () => {

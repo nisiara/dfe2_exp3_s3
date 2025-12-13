@@ -12,15 +12,15 @@ describe('Conjunto de tests para componente HomePage: ', () => {
 
   it('Mostrar imagen de portada.', () => {
     render(<HomePage/>)
-    const imagenPortada = screen.getByRole('img', { name: 'Punto Ticket' })
+    const imagenPortada = screen.getByRole('img', { name: 'Portada Milk & Crumbs' })
     expect(imagenPortada).toBeInTheDocument()
 
   })
 
   it('Verificar ruta image portada', () => {
     render(<HomePage/>)
-    const imagenPortada = screen.getByAltText('Punto Ticket');
-    expect(imagenPortada).toHaveAttribute('src', 'images/home.jpg')
+    const imagenPortada = screen.getByAltText('Portada Milk & Crumbs');
+    expect(imagenPortada).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2021/06/Galletas-Crinkle-Pink-Lemonade-IMAGEN-DESTACADA.jpg')
   })
 
 

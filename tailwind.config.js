@@ -6,7 +6,8 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ['"Roboto Condensed"', 'sans-serif']
+      sans: ["'Outfit'", 'sans-serif'],
+      body: ["'Outfit'", 'sans-serif']
     }
   },
   plugins: [],

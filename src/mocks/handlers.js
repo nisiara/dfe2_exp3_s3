@@ -17,7 +17,7 @@ const recetas = [
     tiempoPreparacion: "20 min",
     tiempoCoccion: "0 min",
     cantidadPorciones: 4,
-    imagen: "https://placehold.co/600x400/white/black?text=Ricotta+Batida",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/02/Ricotta-batida-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Salado",
       "Picoteo",
@@ -49,7 +49,7 @@ const recetas = [
     tiempoPreparacion: "40 min",
     tiempoCoccion: "50 min",
     cantidadPorciones: 8,
-    imagen: "https://placehold.co/600x400/yellow/red?text=Queque+Limon+Almendra",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/02/Queque-de-Limon-Almendra-y-Cereza-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Queques",
@@ -79,7 +79,7 @@ const recetas = [
     tiempoPreparacion: "15 min",
     tiempoCoccion: "10 min",
     cantidadPorciones: 4,
-    imagen: "https://placehold.co/600x400/orange/white?text=Flatbread",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/01/Flatbread-1-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Salado",
       "Panes",
@@ -110,7 +110,7 @@ const recetas = [
     tiempoPreparacion: "40 min",
     tiempoCoccion: "25 min",
     cantidadPorciones: 8,
-    imagen: "https://placehold.co/600x400/pink/white?text=Rollo+Merengue",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/01/Rollo-de-Merengue-de-Naranja-pistacho-y-frutilla-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Postres",
@@ -139,7 +139,7 @@ const recetas = [
     tiempoPreparacion: "30 min",
     tiempoCoccion: "0 min",
     cantidadPorciones: 10,
-    imagen: "https://placehold.co/600x400/brown/red?text=Cheesecake+Choco+Frambuesa",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/01/Cheesecake-Chocolate-Frambuesa-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Postres",
@@ -169,7 +169,7 @@ const recetas = [
     tiempoPreparacion: "30 min",
     tiempoCoccion: "5 min",
     cantidadPorciones: 2,
-    imagen: "https://placehold.co/600x400/green/black?text=Palta+Grillada",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/12/Palta-grillada-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Salado",
       "Entradas",
@@ -198,7 +198,7 @@ const recetas = [
     tiempoPreparacion: "15 min",
     tiempoCoccion: "10 min",
     cantidadPorciones: 6,
-    imagen: "https://placehold.co/600x400/orange/brown?text=Tostadas+Francesas",
+    imagen: "https://carorocco.com/wp-content/uploads/2022/02/Tostadas-Francesas-1-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Desayuno",
@@ -227,7 +227,7 @@ const recetas = [
     tiempoPreparacion: "30 min",
     tiempoCoccion: "60 min",
     cantidadPorciones: 4,
-    imagen: "https://placehold.co/600x400/yellow/red?text=Gratin+de+Papas",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/12/Gratin-de-Papas-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Salado",
       "Acompañamiento",
@@ -258,7 +258,7 @@ const recetas = [
     tiempoPreparacion: "90 min",
     tiempoCoccion: "90 min",
     cantidadPorciones: 8,
-    imagen: "https://placehold.co/600x400/brown/white?text=Torta+Cinnamon+Roll",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/12/Torta-Cinnamon-Roll-Navidena-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Navidad",
@@ -289,7 +289,7 @@ const recetas = [
     tiempoPreparacion: "20 min",
     tiempoCoccion: "25 min",
     cantidadPorciones: 12,
-    imagen: "https://placehold.co/600x400/darkbrown/green?text=Muffins+Pera+Choco",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/12/Muffins-de-Chocolate-Pera-y-Especias-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Desayuno",
@@ -318,7 +318,7 @@ const recetas = [
     tiempoPreparacion: "30 min",
     tiempoCoccion: "12 min",
     cantidadPorciones: 24,
-    imagen: "https://placehold.co/600x400/brown/black?text=Galletas+Cafe",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/12/Galletas-Cafe-Especias-y-Chocolate-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Galletas",
@@ -346,7 +346,7 @@ const recetas = [
     tiempoPreparacion: "60 min",
     tiempoCoccion: "40 min",
     cantidadPorciones: 12,
-    imagen: "https://placehold.co/600x400/green/white?text=Torta+Limon+Albahaca",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/11/Torta-Limon-Albahaca-y-Menta-1-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Tortas",
@@ -374,7 +374,7 @@ const recetas = [
     tiempoPreparacion: "5 min",
     tiempoCoccion: "15 min",
     cantidadPorciones: 6,
-    imagen: "https://placehold.co/600x400/red/yellow?text=Fondue+Queso+Tomate",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/10/Fondue-de-Queso-1-imagen-destacada.jpg",
     categorias: [
       "Salado",
       "Picoteo",
@@ -401,7 +401,7 @@ const recetas = [
     tiempoPreparacion: "60 min",
     tiempoCoccion: "10 min",
     cantidadPorciones: 6,
-    imagen: "https://placehold.co/600x400/brown/white?text=Mini+Tortas+Hojarasca",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/09/Hojarasca-Manjar-Merengue-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Dulce",
       "Chilena",
@@ -428,7 +428,7 @@ const recetas = [
     tiempoPreparacion: "30 min",
     tiempoCoccion: "15 min",
     cantidadPorciones: 20,
-    imagen: "https://placehold.co/600x400/beige/red?text=Galletas+Tomate+Flores",
+    imagen: "https://carorocco.com/wp-content/uploads/2021/11/Galletas-de-Tomate-y-Flores-1-IMAGEN-DESTACADA.jpg",
     categorias: [
       "Salado",
       "Galletas",
