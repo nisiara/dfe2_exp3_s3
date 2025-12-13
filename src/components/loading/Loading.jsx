@@ -1,5 +1,5 @@
 const Loading = () => ( 
-  <p className="text-sm underline text-center text-slate-500">Cargando</p> 
+  <p p className="text-center text-gray-950 font-bold underline text-sm">Cargando</p> 
 );
 
  

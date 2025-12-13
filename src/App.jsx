@@ -3,48 +3,16 @@ import './App.css'
 import AppRoutes from './routes/AppRoutes'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
-// import { gql } from '@apollo/client'
-// import { useQuery } from '@apollo/client/react'
 
-
-/* 
-const GQL_OBTENER_EVENTOS = gql`
-  query ObtenerEventos {
-    eventos {
-      id
-      nombre_evento
-      tipo_evento
-      locacion
-      ciudad
-      fecha
-      imagen_url
-    }
-  }
-` 
-*/
 
 const App = () => {
 
-  /* 
-  const {loading, error, data} = useQuery(GQL_OBTENER_EVENTOS, {
-    fetchPolicy: 'network-only'
-  }) 
-  */
-
-  const [dataEventos, setDataEventos] = useState([])
+  const [dataRecetas, setDataRecetas] = useState([])
   const [loading, setLoading] = useState(false)
-  
-  /* 
-  useEffect(() => {
-    if(data){
-      setDataEventos(data.eventos)
-    }
-  }, [error, data])
-  */
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/eventos')
+    fetch('/api/recetas')
     .then( response => {
       if(!response.ok)
         throw new Error(response.status + " - " + response.statusText);
@@ -52,7 +20,7 @@ const App = () => {
       return response.json()
     })
     .then( info => {
-      setDataEventos(info)
+      setDataRecetas(info)
       setLoading(false)
       
     })
@@ -66,7 +34,7 @@ const App = () => {
   return (
     <>
       <Header/>
-      <AppRoutes listaEventos={dataEventos} loading={loading} />
+      <AppRoutes listaRecetas={dataRecetas} loading={loading} />
       <Footer/>
     </>
   )

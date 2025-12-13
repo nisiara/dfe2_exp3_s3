@@ -3,7 +3,7 @@ import { http, HttpResponse, delay, graphql} from "msw";
 const recetas = [
   {
     id: 1,
-    nombreComida: "Ricotta Batida",
+    nombre: "Ricotta Batida",
     descripcion: "Una receta de picoteo distinta, rica y muy fácil, que está lista en sólo 20 minutos o menos. Perfecta para tablas de picoteo.",
     ingredientes: [
       "Ricotta",
@@ -18,12 +18,12 @@ const recetas = [
     tiempoCoccion: "0 min",
     cantidadPorciones: 4,
     imagen: "https://placehold.co/600x400/white/black?text=Ricotta+Batida",
-    categoria: [
+    categorias: [
       "Salado",
       "Picoteo",
       "Vegetariano"
     ],
-    procedimientos: [
+    procedimiento: [
       "Batir la ricotta en un procesador o con batidora hasta que esté muy cremosa y aireada.",
       "Extender en un plato o bowl bajo.",
       "Rociar con aceite de oliva, hierbas frescas picadas, sal y pimienta.",
@@ -33,7 +33,7 @@ const recetas = [
   },
   {
     id: 2,
-    nombreComida: "Queque de Limón, Almendra y Cereza",
+    nombre: "Queque de Limón, Almendra y Cereza",
     descripcion: "Un queque cítrico, fresco y veraniego. El bizcocho es de limón y almendra, con un glaseado de limón y cereza.",
     ingredientes: [
       "125 g Mantequilla sin sal",
@@ -50,12 +50,12 @@ const recetas = [
     tiempoCoccion: "50 min",
     cantidadPorciones: 8,
     imagen: "https://placehold.co/600x400/yellow/red?text=Queque+Limon+Almendra",
-    categoria: [
+    categorias: [
       "Dulce",
       "Queques",
       "Hora del té"
     ],
-    procedimientos: [
+    procedimiento: [
       "Batir mantequilla con azúcar y ralladura hasta cremar.",
       "Agregar huevos uno a uno.",
       "Incorporar harinas y polvos intercalando con los líquidos (limón/leche).",
@@ -66,7 +66,7 @@ const recetas = [
   },
   {
     id: 3,
-    nombreComida: "Flatbread – Pan rápido y fácil",
+    nombre: "Flatbread – Pan rápido y fácil",
     descripcion: "Un pan plano muy fácil de hacer con una combinación de ingredientes salados y dulces exquisita.",
     ingredientes: [
       "Harina",
@@ -80,12 +80,12 @@ const recetas = [
     tiempoCoccion: "10 min",
     cantidadPorciones: 4,
     imagen: "https://placehold.co/600x400/orange/white?text=Flatbread",
-    categoria: [
+    categorias: [
       "Salado",
       "Panes",
       "Acompañamiento"
     ],
-    procedimientos: [
+    procedimiento: [
       "Mezclar harina con yogurt y sal hasta formar una masa.",
       "Estirar en forma ovalada o irregular.",
       "Cocinar en sartén caliente con un poco de aceite hasta dorar por ambos lados.",
@@ -95,7 +95,7 @@ const recetas = [
   },
   {
     id: 4,
-    nombreComida: "Rollo de Merengue de Frutilla, Naranja y Pistachos",
+    nombre: "Rollo de Merengue de Frutilla, Naranja y Pistachos",
     descripcion: "Rollo de merengue firme por fuera y suave por dentro. Relleno con crema, agua de azahar y frutillas.",
     ingredientes: [
       "150 g Claras de Huevo",
@@ -111,12 +111,12 @@ const recetas = [
     tiempoCoccion: "25 min",
     cantidadPorciones: 8,
     imagen: "https://placehold.co/600x400/pink/white?text=Rollo+Merengue",
-    categoria: [
+    categorias: [
       "Dulce",
       "Postres",
       "Sin Gluten"
     ],
-    procedimientos: [
+    procedimiento: [
       "Hacer un merengue firme con las claras y azúcar.",
       "Extender en bandeja y hornear 20-30 min a 160ºC.",
       "Voltear sobre papel, dejar enfriar y rellenar con la crema batida con azahar y frutas.",
@@ -126,7 +126,7 @@ const recetas = [
   },
   {
     id: 5,
-    nombreComida: "Cheesecake de Chocolate y Frambuesa",
+    nombre: "Cheesecake de Chocolate y Frambuesa",
     descripcion: "Cheesecake sin horno con base de Oreo, capa de frambuesas y relleno de chocolate.",
     ingredientes: [
       "300 g Galletas Oreo molidas",
@@ -140,12 +140,12 @@ const recetas = [
     tiempoCoccion: "0 min",
     cantidadPorciones: 10,
     imagen: "https://placehold.co/600x400/brown/red?text=Cheesecake+Choco+Frambuesa",
-    categoria: [
+    categorias: [
       "Dulce",
       "Postres",
       "Sin Horno"
     ],
-    procedimientos: [
+    procedimiento: [
       "Formar la base mezclando Oreo y mantequilla; refrigerar.",
       "Poner una capa de frambuesas molidas sobre la base.",
       "Batir queso crema con chocolate derretido y luego incorporar crema batida.",
@@ -155,7 +155,7 @@ const recetas = [
   },
   {
     id: 6,
-    nombreComida: "Palta Grillada Rellena",
+    nombre: "Palta Grillada Rellena",
     descripcion: "Entrada distinta: palta grillada rellena con queso feta, quínoa, tomate y albahaca.",
     ingredientes: [
       "2 Paltas",
@@ -170,12 +170,12 @@ const recetas = [
     tiempoCoccion: "5 min",
     cantidadPorciones: 2,
     imagen: "https://placehold.co/600x400/green/black?text=Palta+Grillada",
-    categoria: [
+    categorias: [
       "Salado",
       "Entradas",
       "Vegetariano"
     ],
-    procedimientos: [
+    procedimiento: [
       "Partir paltas por la mitad y grillar boca abajo en sartén o parrilla.",
       "Mezclar quínoa con tomate, albahaca y aliños.",
       "Rellenar la palta con la mezcla y terminar con queso feta, mayonesa y pesto."
@@ -184,7 +184,7 @@ const recetas = [
   },
   {
     id: 7,
-    nombreComida: "Tostadas Francesas con Cornflakes",
+    nombre: "Tostadas Francesas con Cornflakes",
     descripcion: "Tostadas francesas crujientes por fuera gracias a los cornflakes. Ideales para brunch.",
     ingredientes: [
       "2 Huevos",
@@ -199,12 +199,12 @@ const recetas = [
     tiempoCoccion: "10 min",
     cantidadPorciones: 6,
     imagen: "https://placehold.co/600x400/orange/brown?text=Tostadas+Francesas",
-    categoria: [
+    categorias: [
       "Dulce",
       "Desayuno",
       "Brunch"
     ],
-    procedimientos: [
+    procedimiento: [
       "Mezclar huevos, crema, leche y vainilla.",
       "Pasar el pan por la mezcla líquida y luego por los cornflakes molidos.",
       "Dorar en sartén con mantequilla por ambos lados."
@@ -213,7 +213,7 @@ const recetas = [
   },
   {
     id: 8,
-    nombreComida: "Gratin de Papas",
+    nombre: "Gratin de Papas",
     descripcion: "Papas laminadas finas horneadas en mezcla de leche, salsa de tomate y queso gruyère.",
     ingredientes: [
       "500 g Papas",
@@ -228,12 +228,12 @@ const recetas = [
     tiempoCoccion: "60 min",
     cantidadPorciones: 4,
     imagen: "https://placehold.co/600x400/yellow/red?text=Gratin+de+Papas",
-    categoria: [
+    categorias: [
       "Salado",
       "Acompañamiento",
       "Navidad"
     ],
-    procedimientos: [
+    procedimiento: [
       "Calentar leche, crema, salsa de tomate y ajo.",
       "Laminar papas muy finas.",
       "Intercalar capas de papas y queso en una fuente.",
@@ -244,7 +244,7 @@ const recetas = [
   },
   {
     id: 9,
-    nombreComida: "Torta de Cinnamon Roll Navideña",
+    nombre: "Torta de Cinnamon Roll Navideña",
     descripcion: "Torta de rollo de canela gigante, rellena con especias navideñas (canela, cardamomo, clavo).",
     ingredientes: [
       "530 g Harina",
@@ -259,12 +259,12 @@ const recetas = [
     tiempoCoccion: "90 min",
     cantidadPorciones: 8,
     imagen: "https://placehold.co/600x400/brown/white?text=Torta+Cinnamon+Roll",
-    categoria: [
+    categorias: [
       "Dulce",
       "Navidad",
       "Bollería"
     ],
-    procedimientos: [
+    procedimiento: [
       "Hacer masa de levadura y dejar leudar 1 hora.",
       "Estirar rectángulo, pincelar con mantequilla y cubrir con especias.",
       "Cortar tiras y enrollarlas una sobre otra para formar un rollo gigante.",
@@ -274,7 +274,7 @@ const recetas = [
   },
   {
     id: 10,
-    nombreComida: "Muffins de Chocolate, Pera y Especias",
+    nombre: "Muffins de Chocolate, Pera y Especias",
     descripcion: "Muffins húmedos con puré de pera, especias y chocolate. Sabor a invierno/navidad.",
     ingredientes: [
       "200 g Puré de Pera",
@@ -290,12 +290,12 @@ const recetas = [
     tiempoCoccion: "25 min",
     cantidadPorciones: 12,
     imagen: "https://placehold.co/600x400/darkbrown/green?text=Muffins+Pera+Choco",
-    categoria: [
+    categorias: [
       "Dulce",
       "Desayuno",
       "Navidad"
     ],
-    procedimientos: [
+    procedimiento: [
       "Batir mantequilla y azúcar. Agregar puré de pera y huevos.",
       "Incorporar secos (harina, cacao, especias).",
       "Agregar chocolate derretido al final.",
@@ -305,7 +305,7 @@ const recetas = [
   },
   {
     id: 11,
-    nombreComida: "Galletas de Café, Especias y Chocolate",
+    nombre: "Galletas de Café, Especias y Chocolate",
     descripcion: "Galletas navideñas fáciles que combinan café, especias y chocolate.",
     ingredientes: [
       "Harina",
@@ -319,12 +319,12 @@ const recetas = [
     tiempoCoccion: "12 min",
     cantidadPorciones: 24,
     imagen: "https://placehold.co/600x400/brown/black?text=Galletas+Cafe",
-    categoria: [
+    categorias: [
       "Dulce",
       "Galletas",
       "Regalos"
     ],
-    procedimientos: [
+    procedimiento: [
       "Formar una masa con todos los ingredientes.",
       "Refrigerar la masa antes de cortar.",
       "Cortar con moldes y hornear hasta que estén firmes."
@@ -333,7 +333,7 @@ const recetas = [
   },
   {
     id: 12,
-    nombreComida: "Torta de Limón, Albahaca y Menta",
+    nombre: "Torta de Limón, Albahaca y Menta",
     descripcion: "Torta con bizcocho de hierbas (albahaca/menta) y frosting de mascarpone y limón.",
     ingredientes: [
       "Albahaca fresca",
@@ -347,12 +347,12 @@ const recetas = [
     tiempoCoccion: "40 min",
     cantidadPorciones: 12,
     imagen: "https://placehold.co/600x400/green/white?text=Torta+Limon+Albahaca",
-    categoria: [
+    categorias: [
       "Dulce",
       "Tortas",
       "Primavera"
     ],
-    procedimientos: [
+    procedimiento: [
       "Procesar hierbas con aceite de oliva.",
       "Usar este aceite para batir el bizcocho con huevos y azúcar.",
       "Hornear en capas.",
@@ -362,7 +362,7 @@ const recetas = [
   },
   {
     id: 13,
-    nombreComida: "Fondue de Queso y Tomate",
+    nombre: "Fondue de Queso y Tomate",
     descripcion: "Fondue rápido (15 min) con salsa de tomate y quesos, ideal para Halloween o picoteos.",
     ingredientes: [
       "3 Dientes de Ajo",
@@ -375,12 +375,12 @@ const recetas = [
     tiempoCoccion: "15 min",
     cantidadPorciones: 6,
     imagen: "https://placehold.co/600x400/red/yellow?text=Fondue+Queso+Tomate",
-    categoria: [
+    categorias: [
       "Salado",
       "Picoteo",
       "Halloween"
     ],
-    procedimientos: [
+    procedimiento: [
       "Saltear ajo en una olla.",
       "Agregar salsa de tomate y quesos.",
       "Cocinar revolviendo hasta fundir y homogeneizar.",
@@ -390,7 +390,7 @@ const recetas = [
   },
   {
     id: 14,
-    nombreComida: "Mini Tortas de Hojarasca",
+    nombre: "Mini Tortas de Hojarasca",
     descripcion: "Clásico dulce chileno en versión individual. Capas de masa crocante con manjar.",
     ingredientes: [
       "Masa de hojarasca (harina, yemas, pisco/vinagre)",
@@ -402,12 +402,12 @@ const recetas = [
     tiempoCoccion: "10 min",
     cantidadPorciones: 6,
     imagen: "https://placehold.co/600x400/brown/white?text=Mini+Tortas+Hojarasca",
-    categoria: [
+    categorias: [
       "Dulce",
       "Chilena",
       "Clásicos"
     ],
-    procedimientos: [
+    procedimiento: [
       "Cortar discos de masa hojarasca y hornear hasta dorar.",
       "Rellenar intercalando discos con manjar.",
       "Cubrir con merengue y sopletear si se desea."
@@ -416,7 +416,7 @@ const recetas = [
   },
   {
     id: 15,
-    nombreComida: "Galletas de Tomate y Flores Prensadas",
+    nombre: "Galletas de Tomate y Flores Prensadas",
     descripcion: "Galletas saladas muy estéticas con flores comestibles prensadas, ideales para tablas.",
     ingredientes: [
       "Harina",
@@ -429,12 +429,12 @@ const recetas = [
     tiempoCoccion: "15 min",
     cantidadPorciones: 20,
     imagen: "https://placehold.co/600x400/beige/red?text=Galletas+Tomate+Flores",
-    categoria: [
+    categorias: [
       "Salado",
       "Galletas",
       "Picoteo"
     ],
-    procedimientos: [
+    procedimiento: [
       "Hacer masa quebrada salada con tomate.",
       "Estirar y cortar galletas.",
       "Poner una flor comestible sobre cada galleta y pasar uslero suavemente para adherir.",
@@ -465,15 +465,13 @@ export const handlers = [
       });
     }
 
-    const recetaId = rawId.toLowerCase()
-
-    const receta = recetas.find(e => e.id.toLowerCase() === recetaId);
+    const receta = recetas.find(e => e.id.toString() === rawId.toString());
     
     if (!receta) {
       return HttpResponse.json({
         errors: [
           {
-            message: `Receta ID: ${recetaId}`,
+            message: `Receta ID: ${rawId}`,
             extensions: { code: 'RECETA NO ENCONTRADA' }
           }
         ]
