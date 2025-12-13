@@ -1,4 +1,4 @@
-# Desarrollo Frontend II - Experiencia 3 Semana 7
+# Desarrollo Frontend II - Experiencia 3 Semana 8
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-7.2.4-646CFF?logo=vite&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss)
@@ -11,17 +11,16 @@
 ![Cypress](https://img.shields.io/badge/Cypress-15.7.1-17202C?logo=cypress)
 
 
+## 🥞 Sistema de Recetas
 
-## 🎟️ Sistema de Eventos
-
-Aplicación web en React para listar y consultar el detalle de un catálogo de eventos culturales, deportivos y musicales usando GraphQL y Apollo Client, simulado con Mock Service Worker. Incluye tests unitarios con Vitest y RTL, y tests E2E con Cypress.
+Aplicación web en React para listar y consultar el detalle de un catálogo de recetas usando GraphQL y Apollo Client, simulado con Mock Service Worker. Incluye tests unitarios con Vitest y RTL, y tests E2E con Cypress.
 
 ## 🚀 Características Principales
 
-- **Lista de Eventos**: Renderiza catálogo con nombre, tipo, locación y acceso al detalle.
-- **Detalle de Evento**: Vista individual completa con información extendida y precios.
-- **API Rest Mock**: Consultas `ObtenerEventos` servidas por MSW.
-- **GraphQL Mock**: Consultas `ObtenerEventoPorID` servidas por MSW.
+- **Lista de Recetas**: Renderiza catálogo con nombre, tipo, locación y acceso al detalle.
+- **Detalle de la Receta**: Vista individual completa con información extendida y precios.
+- **API Rest Mock**: Consultas API servidas por MSW.
+- **GraphQL Mock**: Consultas `ObtenerRecetaPorID` servidas por MSW.
 - **Estados de Carga**: Mensajes diferenciados con delays simulados.
 - **Manejo de Errores**: Respuestas GraphQL con estructura `errors` para IDs inexistentes.
 - **Routing SPA**: Navegación completa con React Router entre páginas.
@@ -47,19 +46,19 @@ Aplicación web en React para listar y consultar el detalle de un catálogo de e
 ```
 cypress/
 ├── e2e/
-│   ├── listar-eventos.cy.js      # Tests E2E para listado de eventos
-│   └── event-detail.cy.js         # Tests E2E para detalle de evento
+│   ├── listar-recetas.cy.js       # Tests E2E para listado de recetas
+│   └── recipe-detail.cy.js        # Tests E2E para detalle de recetas
 ├── fixtures/                      # Datos de prueba
 └── support/                       # Comandos y configuración personalizada
 src/
 ├── pages/
-│   ├── EventsPage.jsx            # Lista de eventos
-│   ├── EventsPage.test.jsx       # Tests del listado
-│   ├── EventDetailPage.jsx       # Detalle de un evento
-│   ├── EventDetailPage.test.jsx  # Tests del detalle
+│   ├── RecipesPage.jsx            # Lista de recetas
+│   ├── RecipesPage.test.jsx       # Tests del listado
+│   ├── RecipeDetailPage.jsx       # Detalle de una receta
+│   ├── RecipeDetailPage.test.jsx  # Tests del detalle
 │   ├── HomePage.jsx              # Página de inicio
 │   ├── HomePage.test.jsx         # Tests de la portada
-│   └── AboutUsPage.jsx           # Información institucional
+│   └── AboutUsPage.jsx           # Información miscelanea
 ├── layout/
 │   ├── Header.jsx                # Navegación principal
 │   ├── Header.test.jsx           # Tests del header
@@ -101,46 +100,37 @@ npx cypress run       # Ejecutar tests E2E en modo headless
 
 #### Tests Unitarios
 - `HomePage.test.jsx` - Renderizado y elementos de la portada
-- `EventsPage.test.jsx` - Lista, imágenes, enlaces y estados
-- `EventDetailPage.test.jsx` - Detalle completo y manejo de errores
+- `RecipesPage.test.jsx` - Lista, imágenes, enlaces y estados
+- `RecipeDetailPage.test.jsx` - Detalle completo y manejo de errores
 - `Header.test.jsx` - Navegación activa y responsive (100% branches)
 - `Footer.test.jsx` - Enlaces y contenido del pie
 - `App.test.jsx` - Integración de componentes y props
 
 #### Tests E2E (Cypress)
-- `listar-eventos.cy.js` - Navegación y conteo de eventos en el listado
-- `event-detail.cy.js` - Flujo completo desde listado hasta detalle de evento
+- `listar-recetas.cy.js` - Navegación y conteo de recetas en el listado
+- `recipe-detail.cy.js` - Flujo completo desde listado hasta detalle de la receta
 
 ## 🔐 Consultas GraphQL
 
 ```graphql
-query ObtenerEventoPorID($id: String!) {
-  evento(id: $id) {
-    id
-    nombre_evento
-    tipo_evento
-    locacion
-    ciudad
-    fecha
-    hora
-    descripcion
-    imagen_url
-    precios {
-      platea
-      palco
-      galeria
-      vip
+const GQL_OBTENER_RECETA_POR_ID = gql`
+  query ObtenerRecetaPorID($id: ID!) {
+    receta(id: $id) {
+      imagen
+      nombre
+      descripcion
+      ingredientes
+      tiempoPreparacion
+      tiempoCoccion
+      cantidadPorciones
+      categorias
+      procedimiento
+      observaciones
     }
   }
-}
+`;
 ```
 
-## 🗃️ Datos Mock
-
-Cada evento incluye (parcialmente mostrado en la UI):
-- `id`, `nombre_evento`, `tipo_evento`, `fecha`, `locacion`, `ciudad`, `hora`.
-- `descripcion`, `auspiciadores`, `precios` (estructura variable). 
-- `detalles_artista` con campos dependientes del tipo (música, teatro, deporte, etc.).
 
 ## 🎨 Diseño y UX
 
@@ -153,7 +143,7 @@ Cada evento incluye (parcialmente mostrado en la UI):
 
 Actualmente, al consultar un ID inexistente, Apollo entra al branch `error` debido a la presencia de `errors` en la respuesta. Para mostrar un mensaje “no encontrado” alternativo se puede:
 1. Inspeccionar `error.graphQLErrors[0].extensions.code`.
-2. O ajustar el handler para devolver `{ data: { evento: null } }` en vez de `errors`.
+2. O ajustar el handler para devolver `{ data: { receta: null } }` en vez de `errors`.
 
 ## 🚀 Instalación y Ejecución
 
@@ -185,8 +175,8 @@ Abrir: `http://localhost:5173`
 
 ### Rutas Disponibles
 - `/` - Página de inicio
-- `/events` - Lista de eventos
-- `/events/:id` - Detalle de evento
+- `/recipes` - Lista de recetas
+- `/recipes/:id` - Detalle de la receta
 - `/about-us` - Información institucional
 
 
