@@ -66,6 +66,34 @@ describe('Conjunto de tests para el componente RecipesPage', () => {
     expect(screen.getByText(/Hora del té/i)).toBeInTheDocument()
   })
 
+  it('Mostrar la imagen de cada receta', () => {
+    renderRecipePage({ 
+      loading: false, 
+      listaRecetas: mockRecetas, 
+      error: null 
+    })
+    const imagenes = screen.getAllByRole('img')
+    const imagenSoda = imagenes.find(img => img.alt === 'Ricotta Batida')
+    const imagenJazz = imagenes.find(img => img.alt === 'Queque de Limón, Almendra y Cereza')
+    
+    expect(imagenSoda).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2022/02/Ricotta-batida-IMAGEN-DESTACADA.jpg')
+    expect(imagenJazz).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2022/02/Queque-de-Limon-Almendra-y-Cereza-IMAGEN-DESTACADA.jpg')
+  })
+
+  it('Mostrar nombre de cada receta', () => {
+    renderRecipePage({ 
+      loading: false, 
+      listaRecetas: mockRecetas, 
+      error: null 
+    })
+    const nombresRecetas = screen.getAllByRole('heading', { level: 3 })
+    const nombreReceta1 = nombresRecetas.find(nombre => nombre.textContent === 'Ricotta Batida')
+    const nombreReceta2 = nombresRecetas.find(nombre => nombre.textContent === 'Queque de Limón, Almendra y Cereza')
+    
+    expect(nombreReceta1).toHaveTextContent('Ricotta Batida')
+    expect(nombreReceta2).toHaveTextContent('Queque de Limón, Almendra y Cereza')
+  })
+
   it('Link apunta al detalle de la receta', () => {
     renderRecipePage({ 
       loading: false, 
@@ -81,18 +109,15 @@ describe('Conjunto de tests para el componente RecipesPage', () => {
     expect(urls).toContain('/recipes/2')
   })
 
-  it('Mostrar la imagen de cada receta', () => {
+  it('Manejar lista de recetas vacía o null', () => {
     renderRecipePage({ 
       loading: false, 
-      listaRecetas: mockRecetas, 
+      listaRecetas: null, 
       error: null 
     })
-    const imagenes = screen.getAllByRole('img')
-    const imagenSoda = imagenes.find(img => img.alt === 'Ricotta Batida')
-    const imagenJazz = imagenes.find(img => img.alt === 'Queque de Limón, Almendra y Cereza')
     
-    expect(imagenSoda).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2022/02/Ricotta-batida-IMAGEN-DESTACADA.jpg')
-    expect(imagenJazz).toHaveAttribute('src', 'https://carorocco.com/wp-content/uploads/2022/02/Queque-de-Limon-Almendra-y-Cereza-IMAGEN-DESTACADA.jpg')
+    expect(screen.queryByText('Ricotta Batida')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Ver Receta' })).not.toBeInTheDocument()
   })
 
 

@@ -11,18 +11,22 @@ describe('Navegación menú header', () => {
     cy.visit('http://localhost:5173')
   })
 
+  // Test 1: Navega a Inicio - valida portada y src
   it('Navega la página "Inicio"', () => {
      obetenerTextoLink('Inicio')
-     cy.get('img[alt="Punto Ticket"]').should('have.attr', 'src').and('include', 'images/home.jpg');
+     cy.get('img[alt="Portada Milk & Crumbs"]').should('have.attr', 'src').and('include', 'https://carorocco.com/wp-content/uploads/2021/06/Galletas-Crinkle-Pink-Lemonade-IMAGEN-DESTACADA.jpg');
   })
 
-  it('Navega a la página "Todos los Eventos"', () => {
-    obetenerTextoLink('Ver todos los eventos')
-    cy.get('section').children('article').should('have.length', 20)
+  // Test 2: Navega a Todas las Recetas - valida cantidad de artículos
+  it('Navega a la página "Todas las Recetas"', () => {
+    obetenerTextoLink('Ver todas las recetas')
+    cy.get('section').children('article').should('have.length', 15)
   })
 
+  // Test 3: Navega a Nosotros - valida encabezado y párrafos
   it('Navega a la pagina "Nosotros"', () => {
     obetenerTextoLink('Nosotros')
-    cy.get('section').children('h3').contains('Nosotros')
+    cy.get('section').children('h4').should('be.visible')
+    cy.get('section').children('p').should('have.length', 2)
   })
 })
