@@ -160,8 +160,8 @@ Actualmente, al consultar un ID inexistente, Apollo entra al branch `error` debi
 ### Instalación
 
 ```bash
-git clone https://github.com/nisiara/dfe2_exp3_s1.git
-cd dfe2_exp2_s6
+git clone https://github.com/nisiara/dfe2_exp3_s3.git
+cd dfe2_exp3_s8
 npm install
 ```
 
@@ -188,4 +188,4 @@ Abrir: `http://localhost:5173`
 
 ---
 
-*Desarrollado con* ❤️, 🤬, 😰 y 😰  usando React, Apollo MSW y un montón de cosas.
+*Desarrollado con* ❤️, 🤬, 😰 y 😎  usando React, Apollo MSW y un montón de cosas.
